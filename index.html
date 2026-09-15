@@ -1,32 +1,40 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>हिन्दी मित्र - सम्पूर्ण बाल पाठशाला (Complete Hindi Learning)</title>
+  <title>Hindi Mitra KIDS - Learn Hindi with Fun!</title>
   
-  <!-- Fonts -->
+  <!-- Google Fonts: Baloo 2 & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #f59e0b;
-      --primary-dark: #d97706;
-      --secondary: #10b981;
-      --accent: #6366f1;
-      --rose: #f43f5e;
-      --purple: #8b5cf6;
-      --bg-main: #fffbeb;
+      --bg-color: #0d1117;
+      --card-bg: #161b22;
+      --card-border: #30363d;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --accent-yellow: #f59e0b;
+      --accent-yellow-hover: #d97706;
+      --accent-red: #ef4444;
+      --accent-green: #10b981;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --header-bg: #161b22;
+      --chiku-bg: #1f242c;
+    }
+
+    body.light {
+      --bg-color: #f8fafc;
       --card-bg: #ffffff;
-      --text-main: #1e293b;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
       --text-muted: #64748b;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
-      --font-hindi: 'Noto Sans Devanagari', system-ui, sans-serif;
+      --header-bg: #ffffff;
+      --chiku-bg: #f1f5f9;
     }
 
     * {
@@ -34,174 +42,397 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     body {
-      font-family: var(--font-hindi);
-      background-color: var(--bg-main);
+      font-family: 'Baloo 2', 'Outfit', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
       color: var(--text-main);
-      line-height: 1.5;
-    }
-
-    .hmk-container {
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 12px;
       min-height: 100vh;
-    }
-
-    /* TOP ACTION BAR FOR EXPORT */
-    .hmk-top-bar {
-      background: linear-gradient(135deg, #ea580c, #d97706);
-      color: #ffffff;
-      padding: 12px 16px;
-      border-radius: var(--radius-md);
-      margin-bottom: 14px;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25);
-      border: 2px solid #fbd38d;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
     }
 
-    .hmk-top-bar h2 {
-      font-size: 14px;
-      font-weight: 900;
+    .app-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 12px 16px 40px;
+      width: 100%;
     }
-
-    .hmk-top-bar p {
-      font-size: 11px;
-      opacity: 0.95;
-    }
-
-    .hmk-bar-btns {
-      display: flex;
-      gap: 8px;
-    }
-
-    .hmk-bar-btn {
-      background: #ffffff;
-      color: #9a3412;
-      border: none;
-      padding: 7px 14px;
-      border-radius: 10px;
-      font-weight: 900;
-      font-size: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      transition: transform 0.15s;
-    }
-    .hmk-bar-btn:active { transform: scale(0.96); }
 
     /* HEADER */
-    .hmk-header {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
-      color: #78350f;
-      padding: 16px 20px;
-      border-radius: var(--radius-lg);
+    header {
+      background: var(--header-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 12px 18px;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 16px;
-      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      margin-bottom: 14px;
     }
 
-    .hmk-brand {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .hmk-logo {
-      font-size: 38px;
-      line-height: 1;
-      background: #ffffff;
-      padding: 6px;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    .brand-icon {
+      font-size: 32px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 2px solid var(--accent-yellow);
+      border-radius: 16px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 3s ease-in-out infinite;
     }
 
-    .hmk-title h1 {
-      font-size: 22px;
-      font-weight: 900;
-      color: #78350f;
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent-yellow);
+      line-height: 1.1;
       letter-spacing: -0.5px;
     }
 
-    .hmk-title p {
-      font-size: 13px;
+    .brand-text h1 span {
+      color: var(--text-main);
+      font-size: 16px;
       font-weight: 700;
-      color: #92400e;
     }
 
-    .hmk-stats {
+    .brand-text p {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .header-actions {
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 8px 16px;
-      border-radius: 999px;
-      box-shadow: var(--shadow-sm);
     }
 
-    .hmk-stat-badge {
-      font-weight: 900;
-      font-size: 15px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* NAVIGATION TABS */
-    .hmk-tabs {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      margin-bottom: 16px;
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .hmk-tab-btn {
-      background: #ffffff;
-      border: 2px solid #fde68a;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-family: var(--font-hindi);
+    .stars-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #1e1b4b;
       font-weight: 800;
       font-size: 13px;
-      color: #451a03;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
+      padding: 6px 14px;
+      border-radius: 50px;
       display: flex;
       align-items: center;
       gap: 6px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.35);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .hmk-tab-btn:hover, .hmk-tab-btn.active {
-      background: var(--primary);
-      border-color: var(--primary-dark);
-      color: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+    .stars-badge.pulse {
+      transform: scale(1.15);
     }
 
-    /* VIEWS */
-    .hmk-section {
+    .theme-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      font-size: 16px;
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      transform: scale(1.05);
+      border-color: var(--accent-yellow);
+    }
+
+    /* TOP CATEGORIES NAV */
+    .categories-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+      margin-bottom: 14px;
+    }
+
+    .categories-nav::-webkit-scrollbar {
       display: none;
-      animation: fadeIn 0.25s ease-in-out;
     }
-    .hmk-section.active {
+
+    .nav-pill {
+      background: var(--card-bg);
+      border: 1.5px solid var(--card-border);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .nav-pill:hover {
+      border-color: var(--accent-yellow);
+      transform: translateY(-2px);
+    }
+
+    .nav-pill.active {
+      background: var(--accent-yellow);
+      color: #0f172a;
+      border-color: var(--accent-yellow);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+    }
+
+    /* SUB-CATEGORY SWITCHER (Vowels / Consonants) */
+    .subcat-switcher {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .subcat-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      transition: all 0.2s ease;
+      color: white;
+    }
+
+    .subcat-vowels {
+      background: #dc2626;
+      opacity: 0.7;
+    }
+
+    .subcat-vowels.active {
+      background: #ef4444;
+      opacity: 1;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.45);
+      transform: scale(1.02);
+    }
+
+    .subcat-consonants {
+      background: #059669;
+      opacity: 0.7;
+    }
+
+    .subcat-consonants.active {
+      background: #10b981;
+      opacity: 1;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45);
+      transform: scale(1.02);
+    }
+
+    /* MITRA CHIKU SAYS BANNER */
+    .chiku-banner {
+      background: var(--chiku-bg);
+      border: 1.5px dashed var(--accent-yellow);
+      border-radius: 18px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .chiku-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chiku-avatar {
+      font-size: 32px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chiku-text h3 {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-yellow);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .chiku-text p {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .tts-speaker-btn {
+      background: var(--accent-yellow);
+      color: #0f172a;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tts-speaker-btn:hover {
+      transform: scale(1.15);
+    }
+
+    /* FLASHCARDS GRID */
+    .flashcards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (min-width: 540px) {
+      .flashcards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .flashcards-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .flashcards-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+      }
+    }
+
+    .flashcard {
+      background: var(--card-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: 20px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .flashcard:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-yellow);
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+    }
+
+    .flashcard:active {
+      transform: scale(0.96);
+    }
+
+    .card-check {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #10b981;
+      color: white;
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .flashcard.learned .card-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .card-letter {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--accent-yellow);
+      margin-bottom: 4px;
+      text-shadow: 0 2px 10px rgba(245, 158, 11, 0.2);
+    }
+
+    .card-icon {
+      font-size: 34px;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .card-word {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .card-roman {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* SECTION VIEW CONTAINERS */
+    .tab-view {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-view.active-view {
       display: block;
     }
 
@@ -210,1180 +441,785 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* SECTION HEADER */
-    .hmk-section-title {
-      font-size: 18px;
-      font-weight: 900;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    /* LETTER GRIDS */
-    .hmk-grid-letters {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 12px;
-    }
-
-    .hmk-letter-card {
-      background: #ffffff;
-      border: 2px solid #fef3c7;
-      border-radius: var(--radius-md);
-      padding: 14px 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .hmk-letter-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-md);
-    }
-
-    .hmk-letter-main {
-      font-size: 40px;
-      font-weight: 900;
-      color: #b45309;
-      line-height: 1.1;
-    }
-
-    .hmk-letter-emoji {
-      font-size: 32px;
-      margin: 6px 0;
-    }
-
-    .hmk-letter-word {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .hmk-letter-english {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    /* BARAKHADI */
-    .hmk-barakhadi-controls {
-      background: #ffffff;
-      padding: 14px;
-      border-radius: var(--radius-md);
-      margin-bottom: 14px;
-      box-shadow: var(--shadow-sm);
-      border: 2px solid #fde68a;
-    }
-
-    .hmk-consonant-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .hmk-chip {
-      background: #f1f5f9;
-      border: 1px solid #cbd5e1;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 16px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .hmk-chip.active, .hmk-chip:hover {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary-dark);
-    }
-
-    .hmk-barakhadi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 10px;
-    }
-
-    .hmk-barakhadi-card {
-      background: #ffffff;
-      border: 2px solid #fed7aa;
-      border-radius: var(--radius-md);
-      padding: 12px;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.15s;
-    }
-    .hmk-barakhadi-card:hover {
-      transform: translateY(-3px);
-      border-color: #f97316;
-    }
-
-    /* WORD BUILDER */
-    .hmk-word-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-    .hmk-word-pill {
-      background: #e2e8f0;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 13px;
-      cursor: pointer;
-    }
-    .hmk-word-pill.active {
-      background: var(--secondary);
-      color: #ffffff;
-    }
-
-    .hmk-words-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-    }
-
-    .hmk-word-card {
-      background: #ffffff;
-      border: 2px solid #bbf7d0;
-      border-radius: var(--radius-md);
-      padding: 14px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s;
-    }
-    .hmk-word-card:hover {
-      transform: scale(1.02);
-      border-color: #10b981;
-    }
-
-    .hmk-word-tiles {
-      display: flex;
-      gap: 4px;
-      margin-top: 4px;
-    }
-    .hmk-tile {
-      background: #f1f5f9;
-      border: 1px solid #cbd5e1;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 900;
-      font-size: 15px;
-      color: #0f172a;
-    }
-
-    /* CANVAS TRACING */
-    .hmk-canvas-wrap {
-      background: #ffffff;
-      border: 2px solid #cbd5e1;
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      text-align: center;
-      box-shadow: var(--shadow-md);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    #tracing-canvas {
-      background: #ffffff;
-      border: 2px dashed #94a3b8;
-      border-radius: var(--radius-md);
-      cursor: crosshair;
-      touch-action: none;
-      width: 100%;
-      max-width: 480px;
-      height: 280px;
-      display: block;
-      margin: 0 auto 14px auto;
-    }
-
-    .hmk-canvas-tools {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      align-items: center;
-    }
-
-    /* MATCHING GAME */
-    .hmk-matching-board {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      background: #ffffff;
+    /* MATRA / WORDS / STORY / QUIZ CARDS */
+    .content-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
       padding: 20px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .hmk-match-col {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .hmk-match-card {
-      background: #f8fafc;
-      border: 2px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      padding: 14px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .hmk-match-card.selected {
-      border-color: #f59e0b;
-      background: #fef3c7;
-      transform: scale(1.04);
-    }
-    .hmk-match-card.matched {
-      border-color: #10b981;
-      background: #dcfce7;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    /* STORIES */
-    .hmk-story-card {
-      background: #ffffff;
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      box-shadow: var(--shadow-md);
       margin-bottom: 16px;
-      border: 2px solid #e2e8f0;
     }
 
-    .hmk-story-title {
-      font-size: 20px;
-      font-weight: 900;
-      color: #047857;
+    .box-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent-yellow);
       margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .hmk-story-sentence {
-      background: #ecfdf5;
-      border-left: 4px solid #10b981;
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: transform 0.15s;
-    }
-    .hmk-story-sentence:hover {
-      transform: translateX(4px);
-    }
-
-    .hmk-sentence-hi {
-      font-size: 16px;
-      font-weight: 800;
-      color: #065f46;
-    }
-
-    .hmk-sentence-en {
-      font-size: 12px;
-      color: #047857;
-    }
-
-    /* QUIZ */
-    .hmk-quiz-card {
-      background: #ffffff;
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: var(--shadow-md);
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      border: 2px solid #fed7aa;
-    }
-
-    .hmk-quiz-options {
+    /* WORDS LIST */
+    .words-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 12px;
-      margin-top: 16px;
     }
 
-    .hmk-quiz-btn {
-      background: #f8fafc;
-      border: 2px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      padding: 14px;
-      font-size: 18px;
-      font-weight: 800;
+    .word-card {
+      background: var(--chiku-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 12px;
+      text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .hmk-quiz-btn:hover {
-      border-color: var(--primary);
-      background: #fef3c7;
+
+    .word-card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-3px);
     }
 
-    /* BUTTONS */
-    .hmk-btn {
-      background: var(--secondary);
-      color: #ffffff;
-      border: none;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-family: var(--font-hindi);
+    .word-card .emoji {
+      font-size: 32px;
+      margin-bottom: 4px;
+    }
+
+    .word-card .hindi {
+      font-size: 18px;
       font-weight: 800;
-      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .word-card .meaning {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* QUIZ COMPONENT */
+    .quiz-container {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .quiz-question {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--accent-yellow);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto 16px;
+    }
+
+    .quiz-option {
+      background: var(--chiku-bg);
+      border: 2px solid var(--card-border);
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 24px;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--accent-yellow);
+      transform: scale(1.03);
+    }
+
+    .quiz-option.correct {
+      background: #064e3b;
+      border-color: #10b981;
+      color: white;
+    }
+
+    .quiz-option.wrong {
+      background: #7f1d1d;
+      border-color: #ef4444;
+      color: white;
+    }
+
+    .quiz-feedback {
+      font-size: 15px;
+      font-weight: 700;
+      min-height: 24px;
+      margin-bottom: 12px;
+    }
+
+    /* STORIES */
+    .story-card {
+      background: var(--chiku-bg);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--card-border);
+    }
+
+    .story-card h4 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--accent-yellow);
+      margin-bottom: 6px;
+    }
+
+    .story-card p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .listen-story-btn {
+      background: var(--accent-yellow);
+      color: #0f172a;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
     }
-    .hmk-btn:hover { transform: scale(1.03); }
-    .hmk-btn:active { transform: scale(0.97); }
 
-    /* FOOTER */
-    .hmk-footer-note {
-      margin-top: 30px;
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 16px;
-      background: #ffffff;
-      border-radius: var(--radius-md);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      border: 2px solid var(--accent-yellow);
+      border-radius: 24px;
+      padding: 24px;
+      max-width: 400px;
+      width: 100%;
       text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      transform: scale(0.92);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.show .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-box h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--accent-yellow);
+    }
+
+    .modal-box p {
       font-size: 13px;
       color: var(--text-muted);
-      border: 1px dashed #cbd5e1;
+      margin-bottom: 16px;
     }
 
-    @media (max-width: 650px) {
-      .hmk-header { flex-direction: column; align-items: flex-start; }
-      .hmk-quiz-options { grid-template-columns: 1fr; }
-      .hmk-matching-board { grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
-      .hmk-letter-main { font-size: 34px; }
+    .pin-input {
+      width: 100%;
+      background: var(--chiku-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      outline: none;
+    }
+
+    .pin-input:focus {
+      border-color: var(--accent-yellow);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-confirm {
+      background: var(--accent-yellow);
+      color: #0f172a;
+    }
+
+    .btn-cancel {
+      background: var(--card-border);
+      color: var(--text-main);
     }
   </style>
-<script src="/_aistudio-iframe.js?v=2c34bde1"></script></head>
+</head>
 <body>
 
-  <div class="hmk-container">
-
-    <!-- BLOGGER TOP INFO & EXPORT BAR -->
-    <div class="hmk-top-bar" id="hmk-blogger-bar">
-      <div>
-        <h2>📝 हिन्दी मित्र - सम्पूर्ण बाल पाठशाला (Single File All-In-One Website)</h2>
-        <p>स्वर, व्यंजन, बारहखड़ी, मात्राएँ, शब्द निर्माण, कहानियाँ, चित्र मिलान, क्विज़ व ट्रेसिंग कैनवास सहित</p>
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="brand-icon">🦜</div>
+        <div class="brand-text">
+          <h1>Hindi Mitra <span>KIDS</span></h1>
+          <p>Learn Hindi with Fun!</p>
+        </div>
       </div>
-      <div class="hmk-bar-btns">
-        <button class="hmk-bar-btn" onclick="hmkCopySourceCode(this)">
-          <span>📋</span> <span id="copy-btn-text">Copy HTML Code</span>
+      <div class="header-actions">
+        <div class="stars-badge" id="starsBadge">
+          <span>⭐</span>
+          <span id="starCount">1215 Stars</span>
+        </div>
+        <button class="theme-btn" id="themeToggle" title="Toggle Light/Dark Theme">🌙</button>
+      </div>
+    </header>
+
+    <!-- TOP CATEGORIES NAVIGATION BAR -->
+    <nav class="categories-nav">
+      <button class="nav-pill active" onclick="switchMainTab('varnamala', this)">
+        <span>🎒</span> वर्णमाला (Varnamala)
+      </button>
+      <button class="nav-pill" onclick="switchMainTab('matras', this)">
+        <span>🪄</span> मात्राएँ (Matras)
+      </button>
+      <button class="nav-pill" onclick="switchMainTab('words', this)">
+        <span>🔤</span> शब्द (Words)
+      </button>
+      <button class="nav-pill" onclick="switchMainTab('stories', this)">
+        <span>📚</span> कहानियाँ (Stories)
+      </button>
+      <button class="nav-pill" onclick="switchMainTab('quiz', this)">
+        <span>🧠</span> क्विज (Quiz)
+      </button>
+      <button class="nav-pill" onclick="switchMainTab('matching', this)">
+        <span>🧩</span> मिलान (Matching)
+      </button>
+      <button class="nav-pill" onclick="openParentsModal()">
+        <span>👨‍👩‍👧</span> Parents
+      </button>
+    </nav>
+
+    <!-- TAB 1: VARNAMALA VIEW -->
+    <div id="tab-varnamala" class="tab-view active-view">
+      <!-- SUB-CATEGORIES BUTTONS -->
+      <div class="subcat-switcher">
+        <button class="subcat-btn subcat-vowels active" id="btnSwar" onclick="switchAlphabetCategory('swar')">
+          <span>🍎</span> स्वर अ-अः (Vowels)
         </button>
-        <button class="hmk-bar-btn" onclick="hmkDownloadSourceCode()">
-          <span>⬇️</span> <span>Download .HTML</span>
+        <button class="subcat-btn subcat-consonants" id="btnVyanjan" onclick="switchAlphabetCategory('vyanjan')">
+          <span>🐘</span> व्यंजन क-ज्ञ (Consonants)
+        </button>
+      </div>
+
+      <!-- CHARACTER ASSISTANT BANNER ("MITRA CHIKU SAYS") -->
+      <div class="chiku-banner">
+        <div class="chiku-left">
+          <div class="chiku-avatar">🐵</div>
+          <div class="chiku-text">
+            <h3>MITRA CHIKU SAYS</h3>
+            <p id="chikuMessage">अक्षर पर टैप करें और उसका उच्चारण सुनें!</p>
+          </div>
+        </div>
+        <button class="tts-speaker-btn" onclick="speakChikuMessage()" title="Listen to Chiku">🔊</button>
+      </div>
+
+      <!-- FLASHCARDS GRID -->
+      <div class="flashcards-grid" id="flashcardsGrid">
+        <!-- Generated dynamically via JavaScript -->
+      </div>
+    </div>
+
+    <!-- TAB 2: MATRAS VIEW -->
+    <div id="tab-matras" class="tab-view">
+      <div class="content-box">
+        <div class="box-title">🪄 हिन्दी की मात्राएँ (Vowel Signs)</div>
+        <div class="words-grid" id="matrasGrid">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: WORDS VIEW -->
+    <div id="tab-words" class="tab-view">
+      <div class="content-box">
+        <div class="box-title">🔤 सरल शब्द सीखें (Simple Hindi Words)</div>
+        <div class="words-grid" id="wordsGrid">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: STORIES VIEW -->
+    <div id="tab-stories" class="tab-view">
+      <div class="content-box">
+        <div class="box-title">📚 प्यारी बाल कहानियाँ (Moral Stories)</div>
+        <div id="storiesList">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: QUIZ VIEW -->
+    <div id="tab-quiz" class="tab-view">
+      <div class="content-box quiz-container">
+        <div class="box-title" style="justify-content: center;">🧠 पहचानो कौन? (Picture Quiz)</div>
+        <div class="quiz-question" id="quizQuestion">लोड हो रहा है...</div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <button class="subcat-btn subcat-consonants" style="max-width: 200px; margin: 0 auto;" onclick="generateQuizQuestion()">
+          अगला प्रश्न ➡️
         </button>
       </div>
     </div>
 
-    <!-- MAIN APP HEADER -->
-    <header class="hmk-header">
-      <div class="hmk-brand">
-        <div class="hmk-logo">🇮🇳</div>
-        <div class="hmk-title">
-          <h1>हिन्दी मित्र - सम्पूर्ण बाल पाठशाला</h1>
-          <p>4 से 10 वर्ष के बच्चों के लिए सम्पूर्ण इंटरैक्टिव हिंदी कोर्स</p>
-        </div>
+    <!-- TAB 6: MATCHING VIEW -->
+    <div id="tab-matching" class="tab-view">
+      <div class="content-box quiz-container">
+        <div class="box-title" style="justify-content: center;">🧩 अक्षर से चित्र का मिलान (Match Game)</div>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 14px;">
+          पहले अक्षर पर क्लिक करें फिर सही चित्र पर!
+        </p>
+        <div class="words-grid" id="matchingGrid"></div>
       </div>
-      <div class="hmk-stats">
-        <div class="hmk-stat-badge" style="color: #d97706;">
-          <span>⭐</span>
-          <span id="hmk-stars">0</span>
-        </div>
-        <div class="hmk-stat-badge" style="color: #7c3aed;">
-          <span>🏅</span>
-          <span id="hmk-badges">3</span>
-        </div>
-        <button class="hmk-btn" style="background: #3b82f6;" onclick="hmkSpeak('हिन्दी मित्र में आपका स्वागत है! आइए हिंदी सीखें!')">
-          🔊 सुनो
+    </div>
+
+    <!-- TAB 7: PARENTS VIEW -->
+    <div id="tab-parents" class="tab-view">
+      <div class="content-box">
+        <div class="box-title">👨‍👩‍👧 अभिभावक डैशबोर्ड (Parents Area)</div>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
+          बच्चों की प्रगति: अब तक कुल <strong id="learnedTotalText" style="color: var(--accent-yellow);">0</strong> अक्षर सीखे गए हैं।
+        </p>
+        <button class="subcat-btn subcat-vowels" style="max-width: 220px;" onclick="resetAllProgress()">
+          🔄 प्रोग्रेस रीसेट करें
         </button>
       </div>
-    </header>
-
-    <!-- NAVIGATION TABS -->
-    <nav class="hmk-tabs">
-      <button class="hmk-tab-btn active" onclick="hmkSwitchTab('swar')">🔤 स्वर (अ-अः)</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('vyanjan')">🔤 व्यंजन (क-ज्ञ)</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('barakhadi')">✍️ बारहखड़ी (Matrix)</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('matra')">📖 मात्रा ज्ञान</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('words')">🧩 शब्द निर्माण</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('numbers')">🔢 गिनती (१-२०)</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('canvas')">🎨 अक्षर लिखो (Trace)</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('matching')">🎮 मिलान खेल</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('stories')">📚 कहानियाँ</button>
-      <button class="hmk-tab-btn" onclick="hmkSwitchTab('quiz')">🎯 क्विज़ खेल</button>
-    </nav>
-
-    <!-- TAB 1: SWAR -->
-    <section id="tab-swar" class="hmk-section active">
-      <div class="hmk-section-title" style="color: #b45309;">
-        <span>🔤 स्वर ज्ञान (13 Vowels with Audio & Examples)</span>
-        <button class="hmk-btn" onclick="hmkSpeak('अ, आ, इ, ई, उ, ऊ, ऋ, ए, ऐ, ओ, औ, अं, अः')">🔊 सभी स्वर सुनो</button>
-      </div>
-      <div class="hmk-grid-letters" id="grid-swar"></div>
-    </section>
-
-    <!-- TAB 2: VYANJAN -->
-    <section id="tab-vyanjan" class="hmk-section">
-      <div class="hmk-section-title" style="color: #047857;">
-        <span>🔤 व्यंजन ज्ञान (36 Consonants क से ज्ञ तक)</span>
-        <button class="hmk-btn" onclick="hmkSpeak('क से कबूतर, ख से खरगोश, ग से गमला')">🔊 उच्चारण सुनें</button>
-      </div>
-      <div class="hmk-grid-letters" id="grid-vyanjan"></div>
-    </section>
-
-    <!-- TAB 3: BARAKHADI -->
-    <section id="tab-barakhadi" class="hmk-section">
-      <div class="hmk-section-title" style="color: #ea580c;">
-        <span>✍️ सम्पूर्ण बारहखड़ी तालिका (Interactive Barakhadi)</span>
-      </div>
-      <div class="hmk-barakhadi-controls">
-        <div style="font-size: 13px; font-weight: 800; color: #78350f;">व्यंजन चुनें (Select Consonant):</div>
-        <div class="hmk-consonant-chips" id="barakhadi-consonant-chips"></div>
-      </div>
-      <div class="hmk-barakhadi-grid" id="grid-barakhadi"></div>
-    </section>
-
-    <!-- TAB 4: MATRA -->
-    <section id="tab-matra" class="hmk-section">
-      <div class="hmk-section-title" style="color: #4338ca;">
-        <span>📖 मात्रा ज्ञान एवं उदाहरण (All Hindi Matras)</span>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;" id="grid-matra"></div>
-    </section>
-
-    <!-- TAB 5: WORD BUILDER -->
-    <section id="tab-words" class="hmk-section">
-      <div class="hmk-section-title" style="color: #059669;">
-        <span>🧩 शब्द निर्माण (2, 3 एवं 4 अक्षर वाले शब्द)</span>
-      </div>
-      <div class="hmk-word-tabs">
-        <button class="hmk-word-pill active" onclick="hmkFilterWords(2, this)">2 अक्षर वाले शब्द</button>
-        <button class="hmk-word-pill" onclick="hmkFilterWords(3, this)">3 अक्षर वाले शब्द</button>
-        <button class="hmk-word-pill" onclick="hmkFilterWords(4, this)">4 अक्षर वाले शब्द</button>
-      </div>
-      <div class="hmk-words-grid" id="grid-words"></div>
-    </section>
-
-    <!-- TAB 6: NUMBERS -->
-    <section id="tab-numbers" class="hmk-section">
-      <div class="hmk-section-title" style="color: #d97706;">
-        <span>🔢 हिन्दी संख्या ज्ञान (Hindi Counting १ से २०)</span>
-      </div>
-      <div class="hmk-grid-letters" id="grid-numbers"></div>
-    </section>
-
-    <!-- TAB 7: CANVAS TRACING -->
-    <section id="tab-canvas" class="hmk-section">
-      <div class="hmk-section-title" style="color: #7c3aed;">
-        <span>🎨 अक्षर लिखना सीखें (Tracing & Drawing Canvas)</span>
-      </div>
-      <div class="hmk-canvas-wrap">
-        <div style="font-size: 14px; font-weight: 800; margin-bottom: 8px; color: #4338ca;" id="tracing-hint">
-          अभ्यास करें: अक्षर 'अ' लिखें
-        </div>
-        <canvas id="tracing-canvas" width="450" height="260"></canvas>
-        <div class="hmk-canvas-tools">
-          <button class="hmk-btn" style="background: #ef4444;" onclick="hmkSetColor('#ef4444')">🔴 लाल</button>
-          <button class="hmk-btn" style="background: #3b82f6;" onclick="hmkSetColor('#3b82f6')">🔵 नीला</button>
-          <button class="hmk-btn" style="background: #10b981;" onclick="hmkSetColor('#10b981')">🟢 हरा</button>
-          <button class="hmk-btn" style="background: #f59e0b;" onclick="hmkSetColor('#f59e0b')">🟡 पीला</button>
-          <button class="hmk-btn" style="background: #64748b;" onclick="hmkClearCanvas()">🗑️ साफ़ करें</button>
-          <button class="hmk-btn" style="background: #8b5cf6;" onclick="hmkNewTracingLetter()">🔄 नया अक्षर</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 8: MATCHING GAME -->
-    <section id="tab-matching" class="hmk-section">
-      <div class="hmk-section-title" style="color: #ea580c;">
-        <span>🎮 चित्र व अक्षर मिलान खेल (Match Letters to Pictures)</span>
-        <button class="hmk-btn" onclick="hmkResetMatching()">🔄 नया खेल</button>
-      </div>
-      <div class="hmk-matching-board">
-        <div class="hmk-match-col" id="match-col-letters"></div>
-        <div class="hmk-match-col" id="match-col-emojis"></div>
-      </div>
-    </section>
-
-    <!-- TAB 9: STORIES -->
-    <section id="tab-stories" class="hmk-section">
-      <div class="hmk-section-title" style="color: #065f46;">
-        <span>📚 शिक्षाप्रद बाल कहानियाँ (Moral Stories with Audio)</span>
-      </div>
-      <div id="container-stories"></div>
-    </section>
-
-    <!-- TAB 10: QUIZ -->
-    <section id="tab-quiz" class="hmk-section">
-      <div class="hmk-quiz-card">
-        <span style="font-size: 48px;" id="quiz-emoji">❓</span>
-        <div style="font-size: 22px; font-weight: 900; margin: 16px 0; color: #1e293b;" id="quiz-question">
-          प्रश्न लोड हो रहा है...
-        </div>
-        <div class="hmk-quiz-options" id="quiz-options"></div>
-        <button class="hmk-btn" style="margin-top: 20px; font-size: 16px;" onclick="hmkGenerateQuiz()">अगला प्रश्न ➡️</button>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="hmk-footer-note">
-      <p>❤️ <strong>हिन्दी मित्र - सम्पूर्ण बाल पाठशाला</strong> | 100% Client-Side Single File Web Application</p>
-      <p style="margin-top: 4px; font-size: 11px;">सुरक्षा पासवर्ड: <strong>9136046360</strong> | Google Blogger, GitHub Pages व मोबाइल ब्राउज़र अनुकूलित</p>
-    </footer>
+    </div>
 
   </div>
 
-  <!-- JAVASCRIPT APP CORE -->
-  <script>
-    // AUDIO SYNTHESIS & SOUND EFFECTS
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    
-    function playBeep(freq = 520, type = 'sine', duration = 0.15) {
-      try {
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type;
-        osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
-      } catch (e) {}
-    }
+  <!-- PARENTS PIN LOCK MODAL -->
+  <div class="modal-overlay" id="parentsModal">
+    <div class="modal-box">
+      <h3>🔒 अभिभावक सुरक्षा (Parents Gate)</h3>
+      <p id="mathChallenge">आगे बढ़ने के लिए सवाल हल करें: 5 + 3 = ?</p>
+      <input type="number" id="pinAnswer" class="pin-input" placeholder="उत्तर लिखें" />
+      <div class="modal-buttons">
+        <button class="modal-btn btn-cancel" onclick="closeParentsModal()">रद्द करें</button>
+        <button class="modal-btn btn-confirm" onclick="verifyParentPin()">प्रवेश करें</button>
+      </div>
+    </div>
+  </div>
 
-    function hmkSpeak(text) {
-      playBeep(440, 'triangle', 0.05);
+  <!-- JAVASCRIPT ENGINE -->
+  <script>
+    // DATA REPOSITORY
+    const SWAR_DATA = [
+      { letter: 'अ', word: 'अनार', roman: 'ANAAR', icon: '🍎' },
+      { letter: 'आ', word: 'आम', roman: 'AAM', icon: '🥭' },
+      { letter: 'इ', word: 'इमली', roman: 'IMLI', icon: '🌿' },
+      { letter: 'ई', word: 'ईख', roman: 'EEKH', icon: '🎋' },
+      { letter: 'उ', word: 'उल्लू', roman: 'ULLU', icon: '🦉' },
+      { letter: 'ऊ', word: 'ऊन', roman: 'OON', icon: '🧶' },
+      { letter: 'ऋ', word: 'ऋषि', roman: 'RISHI', icon: '🧘' },
+      { letter: 'ए', word: 'एड़ी', roman: 'EDI', icon: '🦶' },
+      { letter: 'ऐ', word: 'ऐनक', roman: 'AINAK', icon: '👓' },
+      { letter: 'ओ', word: 'ओखली', roman: 'OKHLI', icon: '🥣' },
+      { letter: 'औ', word: 'औरत', roman: 'AURAT', icon: '👩' },
+      { letter: 'अं', word: 'अंगूर', roman: 'ANGOOR', icon: '🍇' },
+      { letter: 'अः', word: 'अहा!', roman: 'AHA', icon: '✨' }
+    ];
+
+    const VYANJAN_DATA = [
+      { letter: 'क', word: 'कबूतर', roman: 'KABUTAR', icon: '🕊️' },
+      { letter: 'ख', word: 'खरगोश', roman: 'KHARGOSH', icon: '🐰' },
+      { letter: 'ग', word: 'गमला', roman: 'GAMLA', icon: '🪴' },
+      { letter: 'घ', word: 'घड़ी', roman: 'GHADI', icon: '⏰' },
+      { letter: 'ङ', word: 'खाली', roman: 'KHAALI', icon: '⚪' },
+      { letter: 'च', word: 'चम्मच', roman: 'CHAMMACH', icon: '🥄' },
+      { letter: 'छ', word: 'छतरी', roman: 'CHATRI', icon: '☂️' },
+      { letter: 'ज', word: 'जहाज', roman: 'JAHAZ', icon: '🚢' },
+      { letter: 'झ', word: 'झंडा', roman: 'JHANDA', icon: '🚩' },
+      { letter: 'ञ', word: 'खाली', roman: 'KHAALI', icon: '⚪' },
+      { letter: 'ट', word: 'टमाटर', roman: 'TAMATAR', icon: '🍅' },
+      { letter: 'ठ', word: 'ठठेरा', roman: 'THATHERA', icon: '🔨' },
+      { letter: 'ड', word: 'डमरू', roman: 'DAMRU', icon: '🪘' },
+      { letter: 'ढ', word: 'ढक्कन', roman: 'DHAKKAN', icon: '🍲' },
+      { letter: 'ण', word: 'खाली', roman: 'KHAALI', icon: '⚪' },
+      { letter: 'त', word: 'तरबूज', roman: 'TARBOOJ', icon: '🍉' },
+      { letter: 'थ', word: 'थर्मस', roman: 'THERMOS', icon: '🍶' },
+      { letter: 'द', word: 'दवात', roman: 'DAWAAT', icon: '✒️' },
+      { letter: 'ध', word: 'धनुष', roman: 'DHANUSH', icon: '🏹' },
+      { letter: 'न', word: 'नल', roman: 'NAL', icon: '🚰' },
+      { letter: 'प', word: 'पतंग', roman: 'PATANG', icon: '🪁' },
+      { letter: 'फ', word: 'फल', roman: 'PHAL', icon: '🍎' },
+      { letter: 'ब', word: 'बत्तख', roman: 'BATTAK', icon: '🦆' },
+      { letter: 'भ', word: 'भालू', roman: 'BHAALU', icon: '🐻' },
+      { letter: 'म', word: 'मछली', roman: 'MACHHLI', icon: '🐟' },
+      { letter: 'य', word: 'यज्ञ', roman: 'YAGYA', icon: '🔥' },
+      { letter: 'र', word: 'रथ', roman: 'RATH', icon: '🎪' },
+      { letter: 'ल', word: 'लट्टू', roman: 'LATTU', icon: '🪀' },
+      { letter: 'व', word: 'वक', roman: 'VAK', icon: '🦩' },
+      { letter: 'श', word: 'शलजम', roman: 'SHALJAM', icon: '🧅' },
+      { letter: 'ष', word: 'षट्कोण', roman: 'SHATKON', icon: '⬡' },
+      { letter: 'स', word: 'सेब', roman: 'SEB', icon: '🍎' },
+      { letter: 'ह', word: 'हाथी', roman: 'HAATHI', icon: '🐘' },
+      { letter: 'क्ष', word: 'क्षत्रिय', roman: 'KSHATRIYA', icon: '🛡️' },
+      { letter: 'त्र', word: 'त्रिशूल', roman: 'TRISHUL', icon: '🔱' },
+      { letter: 'ज्ञ', word: 'ज्ञानी', roman: 'GYANI', icon: '🧘‍♂️' }
+    ];
+
+    const MATRAS_DATA = [
+      { letter: 'ा', word: 'आ की मात्रा', example: 'क + ा = का (कार 🚗)' },
+      { letter: 'ि', word: 'इ की मात्रा', example: 'क + ि = कि (किताब 📖)' },
+      { letter: 'ी', word: 'ई की मात्रा', example: 'क + ी = की (कील 📌)' },
+      { letter: 'ु', word: 'उ की मात्रा', example: 'क + ु = कु (कुटिया 🛖)' },
+      { letter: 'ू', word: 'ऊ की मात्रा', example: 'क + ू = कू (कूदना 🦘)' },
+      { letter: 'े', word: 'ए की मात्रा', example: 'क + े = के (केला 🍌)' },
+      { letter: 'ै', word: 'ऐ की मात्रा', example: 'क + ै = कै (कैमरा 📷)' },
+      { letter: 'ो', word: 'ओ की मात्रा', example: 'क + ो = को (कोयल 🐦)' },
+      { letter: 'ौ', word: 'औ की मात्रा', example: 'क + ौ = कौ (कौआ 🦅)' },
+      { letter: 'ं', word: 'अं की बिंदी', example: 'क + ं = कं (कंगन ⭕)' }
+    ];
+
+    const WORDS_DATA = [
+      { hindi: 'घर', roman: 'Ghar', meaning: 'Home', icon: '🏠' },
+      { hindi: 'बस', roman: 'Bas', meaning: 'Bus', icon: '🚌' },
+      { hindi: 'नल', roman: 'Nal', meaning: 'Tap', icon: '🚰' },
+      { hindi: 'फल', roman: 'Phal', meaning: 'Fruit', icon: '🍎' },
+      { hindi: 'कमल', roman: 'Kamal', meaning: 'Lotus', icon: '🪷' },
+      { hindi: 'मटर', roman: 'Matar', meaning: 'Peas', icon: '🫛' },
+      { hindi: 'सड़क', roman: 'Sadak', meaning: 'Road', icon: '🛣️' },
+      { hindi: 'अचकन', roman: 'Achkan', meaning: 'Coat', icon: '🧥' }
+    ];
+
+    const STORIES_DATA = [
+      {
+        title: '१. प्यासा कौआ (The Thirsty Crow)',
+        text: 'एक बार एक कौआ बहुत प्यासा था। उसे एक मटका मिला जिसमें पानी बहुत कम था। कौवे ने पास पड़े कंकड़ एक-एक करके मटके में डाले। पानी ऊपर आ गया, कौवे ने पानी पिया और उड़ गया। सीख: मेहनत का फल मीठा होता है।'
+      },
+      {
+        title: '२. शेर और चूहा (The Lion & The Mouse)',
+        text: 'एक छोटे चूहे ने सोते हुए शेर को जगा दिया। शेर ने उसे छोड़ दिया। बाद में जब शेर शिकारी के जाल में फंसा, तो चूहे ने जाल कुतरकर शेर की जान बचाई। सीख: कोई भी छोटा या कमजोर नहीं होता।'
+      }
+    ];
+
+    // STATE VARIABLES
+    let currentCategory = 'swar';
+    let stars = 1215;
+    let learnedLetters = new Set();
+    let parentMathNum1 = 4;
+    let parentMathNum2 = 3;
+
+    // WEB SPEECH ENGINE (Hindi TTS)
+    function speak(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'hi-IN';
         utterance.rate = 0.85;
+        utterance.pitch = 1.1;
+
+        const voices = window.speechSynthesis.getVoices();
+        const hindiVoice = voices.find(v => v.lang && v.lang.includes('hi'));
+        if (hindiVoice) utterance.voice = hindiVoice;
+
         window.speechSynthesis.speak(utterance);
       }
     }
 
-    // STATE & STORAGE
-    let hmkState = {
-      stars: parseInt(localStorage.getItem('hmk_full_stars') || '12'),
-      badges: 4,
-      selectedConsonant: 'क',
-      currentWordLength: 2,
-      tracingLetter: 'अ',
-      canvasColor: '#ef4444'
-    };
-
-    document.getElementById('hmk-stars').innerText = hmkState.stars;
-
-    function hmkAddStar(n = 1) {
-      hmkState.stars += n;
-      localStorage.setItem('hmk_full_stars', hmkState.stars);
-      document.getElementById('hmk-stars').innerText = hmkState.stars;
-      playBeep(880, 'sine', 0.25);
+    function speakChikuMessage() {
+      const msg = document.getElementById('chikuMessage').innerText;
+      speak('मित्र चीकू कहता है: ' + msg);
     }
 
-    // TAB SWITCHER
-    function hmkSwitchTab(tabId) {
-      document.querySelectorAll('.hmk-section').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('.hmk-tab-btn').forEach(b => b.classList.remove('active'));
+    // FLASHCARD GENERATION
+    function renderFlashcards() {
+      const grid = document.getElementById('flashcardsGrid');
+      grid.innerHTML = '';
+      const data = currentCategory === 'swar' ? SWAR_DATA : VYANJAN_DATA;
 
-      const target = document.getElementById('tab-' + tabId);
-      if (target) target.classList.add('active');
+      data.forEach(item => {
+        const card = document.createElement('div');
+        const isLearned = learnedLetters.has(item.letter);
+        card.className = 'flashcard' + (isLearned ? ' learned' : '');
+        card.onclick = () => handleCardClick(item, card);
 
-      const btn = Array.from(document.querySelectorAll('.hmk-tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
-      if (btn) btn.classList.add('active');
-
-      if (tabId === 'canvas') setTimeout(initCanvas, 100);
-      if (tabId === 'matching') hmkResetMatching();
-      if (tabId === 'quiz') hmkGenerateQuiz();
-      if (tabId === 'barakhadi') renderBarakhadi(hmkState.selectedConsonant);
+        card.innerHTML = `
+          <div class="card-check">✓</div>
+          <div class="card-letter">${item.letter}</div>
+          <div class="card-icon">${item.icon}</div>
+          <div class="card-word">${item.word}</div>
+          <div class="card-roman">${item.roman}</div>
+        `;
+        grid.appendChild(card);
+      });
     }
 
-    // DATA LISTS
-    const swarData = [
-      { letter: 'अ', word: 'अनार', en: 'Pomegranate', emoji: '🍎' },
-      { letter: 'आ', word: 'आम', en: 'Mango', emoji: '🥭' },
-      { letter: 'इ', word: 'इमली', en: 'Tamarind', emoji: '🟤' },
-      { letter: 'ई', word: 'ईख', en: 'Sugarcane', emoji: '🌾' },
-      { letter: 'उ', word: 'उल्लू', en: 'Owl', emoji: '🦉' },
-      { letter: 'ऊ', word: 'ऊन', en: 'Wool', emoji: '🧶' },
-      { letter: 'ऋ', word: 'ऋषि', en: 'Sage', emoji: '🧘' },
-      { letter: 'ए', word: 'एड़ी', en: 'Heel', emoji: '🦶' },
-      { letter: 'ऐ', word: 'ऐनक', en: 'Spectacles', emoji: '👓' },
-      { letter: 'ओ', word: 'ओखली', en: 'Mortar', emoji: '🥣' },
-      { letter: 'औ', word: 'औरत', en: 'Woman', emoji: '👩' },
-      { letter: 'अं', word: 'अंगूर', en: 'Grapes', emoji: '🍇' },
-      { letter: 'अः', word: 'खाली', en: 'Empty', emoji: '✨' }
-    ];
+    function handleCardClick(item, cardElement) {
+      // 1. Speak letter and word
+      speak(`${item.letter}... से ${item.word}`);
 
-    const vyanjanData = [
-      { letter: 'क', word: 'कबूतर', en: 'Pigeon', emoji: '🕊️' },
-      { letter: 'ख', word: 'खरगोश', en: 'Rabbit', emoji: '🐇' },
-      { letter: 'ग', word: 'गमला', en: 'Flower Pot', emoji: '🪴' },
-      { letter: 'घ', word: 'घर', en: 'House', emoji: '🏠' },
-      { letter: 'ङ', word: 'खाली', en: 'Empty', emoji: '⚪' },
-      { letter: 'च', word: 'चम्मच', en: 'Spoon', emoji: '🥄' },
-      { letter: 'छ', word: 'छतरी', en: 'Umbrella', emoji: '☂️' },
-      { letter: 'ज', word: 'जहाज', en: 'Ship', emoji: '🚢' },
-      { letter: 'झ', word: 'झंडा', en: 'Flag', emoji: '🚩' },
-      { letter: 'ञ', word: 'खाली', en: 'Empty', emoji: '⚪' },
-      { letter: 'ट', word: 'टमाटर', en: 'Tomato', emoji: '🍅' },
-      { letter: 'ठ', word: 'ठठेरा', en: 'Tinker', emoji: '🔨' },
-      { letter: 'ड', word: 'डमरू', en: 'Hand Drum', emoji: '🥁' },
-      { letter: 'ढ', word: 'ढोलक', en: 'Drum', emoji: '🪘' },
-      { letter: 'ण', word: 'बाण', en: 'Arrow', emoji: '🏹' },
-      { letter: 'त', word: 'तरबूज', en: 'Watermelon', emoji: '🍉' },
-      { letter: 'थ', word: 'थर्मस', en: 'Thermos', emoji: '🍶' },
-      { letter: 'द', word: 'दवात', en: 'Inkpot', emoji: '✒️' },
-      { letter: 'ध', word: 'धनुष', en: 'Bow', emoji: '🏹' },
-      { letter: 'न', word: 'नल', en: 'Tap', emoji: '🚰' },
-      { letter: 'प', word: 'पतंग', en: 'Kite', emoji: '🪁' },
-      { letter: 'फ', word: 'फल', en: 'Fruits', emoji: '🍎' },
-      { letter: 'ब', word: 'बस', en: 'Bus', emoji: '🚌' },
-      { letter: 'भ', word: 'भालू', en: 'Bear', emoji: '🐻' },
-      { letter: 'म', word: 'मछली', en: 'Fish', emoji: '🐟' },
-      { letter: 'य', word: 'यज्ञ', en: 'Yajna', emoji: '🔥' },
-      { letter: 'र', word: 'रथ', en: 'Chariot', emoji: '🛺' },
-      { letter: 'ल', word: 'लट्टू', en: 'Spinning Top', emoji: '🪀' },
-      { letter: 'व', word: 'वक', en: 'Crane', emoji: '🦩' },
-      { letter: 'श', word: 'शलजम', en: 'Turnip', emoji: '🧅' },
-      { letter: 'ष', word: 'षट्कोण', en: 'Hexagon', emoji: '⬡' },
-      { letter: 'स', word: 'सपेरा', en: 'Snake Charmer', emoji: '🐍' },
-      { letter: 'ह', word: 'हाथी', en: 'Elephant', emoji: '🐘' },
-      { letter: 'क्ष', word: 'क्षत्रिय', en: 'Warrior', emoji: '⚔️' },
-      { letter: 'त्र', word: 'त्रिशूल', en: 'Trident', emoji: '🔱' },
-      { letter: 'ज्ञ', word: 'ज्ञानी', en: 'Wise Man', emoji: '🧠' }
-    ];
+      // 2. Update Chiku Banner
+      document.getElementById('chikuMessage').innerText = `शाबाश! आपने सीखा: ${item.letter} से ${item.word}!`;
 
-    const matraList = [
-      { vowel: 'आ', symbol: 'ा', name: 'आ की मात्रा', formula: 'क + ा = का', example: 'कार', en: 'Car', emoji: '🚗' },
-      { vowel: 'इ', symbol: 'ि', name: 'इ की मात्रा (छोटी इ)', formula: 'क + ि = कि', example: 'किताब', en: 'Book', emoji: '📖' },
-      { vowel: 'ई', symbol: 'ी', name: 'ई की मात्रा (बड़ी ई)', formula: 'क + ी = की', example: 'कील', en: 'Nail', emoji: '📌' },
-      { vowel: 'उ', symbol: 'ु', name: 'उ की मात्रा (छोटा उ)', formula: 'क + ु = कु', example: 'कुत्ता', en: 'Dog', emoji: '🐶' },
-      { vowel: 'ऊ', symbol: 'ू', name: 'ऊ की मात्रा (बड़ा ऊ)', formula: 'क + ू = कू', example: 'चूहा', en: 'Mouse', emoji: '🐭' },
-      { vowel: 'ऋ', symbol: 'ृ', name: 'ऋ की मात्रा', formula: 'क + ृ = कृ', example: 'वृक्ष', en: 'Tree', emoji: '🌳' },
-      { vowel: 'ए', symbol: 'े', name: 'ए की मात्रा', formula: 'क + े = के', example: 'केला', en: 'Banana', emoji: '🍌' },
-      { vowel: 'ऐ', symbol: 'ै', name: 'ऐ की मात्रा', formula: 'क + ै = कै', example: 'कैमरा', en: 'Camera', emoji: '📷' },
-      { vowel: 'ओ', symbol: 'ो', name: 'ओ की मात्रा', formula: 'क + ो = को', example: 'कोयल', en: 'Cuckoo', emoji: '🐦' },
-      { vowel: 'औ', symbol: 'ौ', name: 'औ की मात्रा', formula: 'क + ौ = कौ', example: 'कौआ', en: 'Crow', emoji: '🐦‍⬛' },
-      { vowel: 'अं', symbol: 'ं', name: 'अनुस्वार', formula: 'क + ं = कं', example: 'कंगन', en: 'Bangle', emoji: '💍' },
-      { vowel: 'अः', symbol: 'ः', name: 'विसर्ग', formula: 'क + ः = कः', example: 'अतः', en: 'Hence', emoji: '✨' }
-    ];
-
-    const barakhadiVowels = [
-      { v: 'अ', s: '', name: 'क' },
-      { v: 'आ', s: 'ा', name: 'का' },
-      { v: 'इ', s: 'ि', name: 'कि' },
-      { v: 'ई', s: 'ी', name: 'की' },
-      { v: 'उ', s: 'ु', name: 'कु' },
-      { v: 'ऊ', s: 'ू', name: 'कू' },
-      { v: 'ए', s: 'े', name: 'के' },
-      { v: 'ऐ', s: 'ै', name: 'कै' },
-      { v: 'ओ', s: 'ो', name: 'को' },
-      { v: 'औ', s: 'ौ', name: 'कौ' },
-      { v: 'अं', s: 'ं', name: 'कं' },
-      { v: 'अः', s: 'ः', name: 'कः' }
-    ];
-
-    const barakhadiConsonants = ['क', 'ख', 'ग', 'घ', 'च', 'छ', 'ज', 'झ', 'ट', 'ठ', 'ड', 'ढ', 'त', 'थ', 'द', 'ध', 'न', 'प', 'फ', 'ब', 'भ', 'म', 'य', 'र', 'ल', 'व', 'श', 'स', 'ह'];
-
-    const wordsData = [
-      // 2 letters
-      { len: 2, word: 'घर', tiles: ['घ', 'र'], en: 'House', emoji: '🏠' },
-      { len: 2, word: 'जल', tiles: ['ज', 'ल'], en: 'Water', emoji: '💧' },
-      { len: 2, word: 'फल', tiles: ['फ', 'ल'], en: 'Fruit', emoji: '🍎' },
-      { len: 2, word: 'बस', tiles: ['ब', 'स'], en: 'Bus', emoji: '🚌' },
-      { len: 2, word: 'कप', tiles: ['क', 'प'], en: 'Cup', emoji: '☕' },
-      { len: 2, word: 'नल', tiles: ['न', 'ल'], en: 'Tap', emoji: '🚰' },
-      { len: 2, word: 'खत', tiles: ['ख', 'त'], en: 'Letter', emoji: '✉️' },
-      { len: 2, word: 'दस', tiles: ['द', 'स'], en: 'Ten', emoji: '🔟' },
-      // 3 letters
-      { len: 3, word: 'कमल', tiles: ['क', 'म', 'ल'], en: 'Lotus', emoji: '🪷' },
-      { len: 3, word: 'कलश', tiles: ['क', 'ल', 'श'], en: 'Pot', emoji: '🏺' },
-      { len: 3, word: 'सड़क', tiles: ['स', 'ड़', 'क'], en: 'Road', emoji: '🛣️' },
-      { len: 3, word: 'मटर', tiles: ['म', 'ट', 'र'], en: 'Peas', emoji: '🫛' },
-      { len: 3, word: 'भवन', tiles: ['भ', 'व', 'न'], en: 'Building', emoji: '🏛️' },
-      { len: 3, word: 'नमक', tiles: ['न', 'म', 'क'], en: 'Salt', emoji: '🧂' },
-      { len: 3, word: 'कलम', tiles: ['क', 'ल', 'म'], en: 'Pen', emoji: '🖊️' },
-      // 4 letters
-      { len: 4, word: 'अचकन', tiles: ['अ', 'च', 'क', 'न'], en: 'Coat', emoji: '🧥' },
-      { len: 4, word: 'शरबत', tiles: ['श', 'र', 'ब', 'त'], en: 'Juice', emoji: '🍹' },
-      { len: 4, word: 'बरगद', tiles: ['ब', 'र', 'ग', 'द'], en: 'Banyan Tree', emoji: '🌳' },
-      { len: 4, word: 'उपवन', tiles: ['उ', 'प', 'व', 'न'], en: 'Garden', emoji: '🏡' },
-      { len: 4, word: 'शलजम', tiles: ['श', 'ल', 'ज', 'म'], en: 'Turnip', emoji: '🧅' }
-    ];
-
-    const numbersData = [
-      { num: '१', word: 'एक', en: '1 (One)', emoji: '🍎' },
-      { num: '२', word: 'दो', en: '2 (Two)', emoji: '🎈🎈' },
-      { num: '३', word: 'तीन', en: '3 (Three)', emoji: '⭐⭐️⭐️' },
-      { num: '४', word: 'चार', en: '4 (Four)', emoji: '🍀🍀🍀🍀' },
-      { num: '५', word: 'पाँच', en: '5 (Five)', emoji: '✋' },
-      { num: '६', word: 'छह', en: '6 (Six)', emoji: '🎲' },
-      { num: '७', word: 'सात', en: '7 (Seven)', emoji: '🌈' },
-      { num: '८', word: 'आठ', en: '8 (Eight)', emoji: '🐙' },
-      { num: '९', word: 'नौ', en: '9 (Nine)', emoji: '🎳' },
-      { num: '१०', word: 'दस', en: '10 (Ten)', emoji: '👐' },
-      { num: '११', word: 'ग्यारह', en: '11 (Eleven)', emoji: '⚽' },
-      { num: '१२', word: 'बारह', en: '12 (Twelve)', emoji: '🌸' },
-      { num: '१३', word: 'तेरह', en: '13 (Thirteen)', emoji: '🍓' },
-      { num: '१४', word: 'चौदह', en: '14 (Fourteen)', emoji: '🍌' },
-      { num: '१५', word: 'पंद्रह', en: '15 (Fifteen)', emoji: '🥭' },
-      { num: '१६', word: 'सोलह', en: '16 (Sixteen)', emoji: '🍭' },
-      { num: '१७', word: 'सत्रह', en: '17 (Seventeen)', emoji: '🍬' },
-      { num: '१८', word: 'अट्ठारह', en: '18 (Eighteen)', emoji: '💎' },
-      { num: '१९', word: 'उन्नीस', en: '19 (Nineteen)', emoji: '🎨' },
-      { num: '२०', word: 'बीस', en: '20 (Twenty)', emoji: '🎉' }
-    ];
-
-    const storiesData = [
-      {
-        title: 'प्यासा कौआ (The Thirsty Crow)',
-        sentences: [
-          { hi: 'एक बार एक कौआ बहुत प्यासा था।', en: 'Once a crow was very thirsty.' },
-          { hi: 'उसने बगीचे में एक घड़ा देखा।', en: 'He saw a pot in the garden.' },
-          { hi: 'घड़े में पानी बहुत कम था।', en: 'There was very little water in the pot.' },
-          { hi: 'कौए ने उसमें छोटे-छोटे कंकड़ डाले।', en: 'The crow dropped small pebbles into it.' },
-          { hi: 'पानी ऊपर आ गया और कौए ने पानी पी लिया।', en: 'Water came up and the crow drank it.' }
-        ],
-        moral: 'मेहनत और बुद्धिमानी से हर समस्या का हल निकलता है।'
-      },
-      {
-        title: 'शेर और चूहा (The Lion and The Mouse)',
-        sentences: [
-          { hi: 'एक शेर जंगल में सो रहा था।', en: 'A lion was sleeping in the forest.' },
-          { hi: 'एक छोटा चूहा उसपर खेलने लगा। शेर जाग गया।', en: 'A little mouse started playing on him. The lion woke up.' },
-          { hi: 'चूहे ने विनती की, "मुझे छोड़ दो, मैं किसी दिन काम आऊंगा।"', en: 'The mouse begged, "Please let me go, I will help you someday."' },
-          { hi: 'एक दिन शेर शिकारी के जाल में फँस गया।', en: 'One day the lion got trapped in a hunter’s net.' },
-          { hi: 'चूहे ने अपने नुकीले दाँतों से जाल काट दिया और शेर आज़ाद हो गया।', en: 'The mouse cut the net with sharp teeth and saved the lion.' }
-        ],
-        moral: 'कोई भी जीव छोटा नहीं होता, दया का फल हमेशा मीठा होता है।'
-      },
-      {
-        title: 'कछुआ और खरगोश (The Tortoise and The Hare)',
-        sentences: [
-          { hi: 'खरगोश को अपनी तेज चाल पर बहुत घमंड था।', en: 'The hare was very proud of his fast speed.' },
-          { hi: 'उसने कछुए को दौड़ लगाने की चुनौती दी।', en: 'He challenged the slow tortoise to a race.' },
-          { hi: 'खरगोश आगे निकलकर रास्ते में सो गया।', en: 'The hare ran ahead and fell asleep on the way.' },
-          { hi: 'कछुआ धीरे-धीरे लगातार चलता रहा और जीत गया।', en: 'The tortoise kept walking steadily and won the race.' }
-        ],
-        moral: 'लगातार और धैर्यपूर्वक प्रयास करने वाले की ही जीत होती है।'
+      // 3. Increment Stars
+      if (!learnedLetters.has(item.letter)) {
+        learnedLetters.add(item.letter);
+        cardElement.classList.add('learned');
+        stars += 5;
+        updateStars();
       }
-    ];
+    }
 
-    // RENDER GRIDS
-    function renderGrids() {
-      // Swar
-      const swarGrid = document.getElementById('grid-swar');
-      if (swarGrid) {
-        swarGrid.innerHTML = swarData.map(item => `
-          <div class="hmk-letter-card" onclick="hmkSpeak('${item.letter} से ${item.word}')">
-            <div class="hmk-letter-main">${item.letter}</div>
-            <div class="hmk-letter-emoji">${item.emoji}</div>
-            <div class="hmk-letter-word">${item.word}</div>
-            <div class="hmk-letter-english">${item.en}</div>
-          </div>
-        `).join('');
-      }
+    function updateStars() {
+      const badge = document.getElementById('starsBadge');
+      document.getElementById('starCount').innerText = `${stars} Stars`;
+      document.getElementById('learnedTotalText').innerText = learnedLetters.size;
+      badge.classList.add('pulse');
+      setTimeout(() => badge.classList.remove('pulse'), 250);
+    }
 
-      // Vyanjan
-      const vyanjanGrid = document.getElementById('grid-vyanjan');
-      if (vyanjanGrid) {
-        vyanjanGrid.innerHTML = vyanjanData.map(item => `
-          <div class="hmk-letter-card" onclick="hmkSpeak('${item.letter} से ${item.word}')">
-            <div class="hmk-letter-main" style="color: #047857;">${item.letter}</div>
-            <div class="hmk-letter-emoji">${item.emoji}</div>
-            <div class="hmk-letter-word">${item.word}</div>
-            <div class="hmk-letter-english">${item.en}</div>
-          </div>
-        `).join('');
-      }
+    // SUB-CATEGORY SWITCHER (Swar / Vyanjan)
+    function switchAlphabetCategory(category) {
+      currentCategory = category;
+      document.getElementById('btnSwar').classList.toggle('active', category === 'swar');
+      document.getElementById('btnVyanjan').classList.toggle('active', category === 'vyanjan');
 
-      // Numbers
-      const numGrid = document.getElementById('grid-numbers');
-      if (numGrid) {
-        numGrid.innerHTML = numbersData.map(item => `
-          <div class="hmk-letter-card" onclick="hmkSpeak('${item.num}, ${item.word}')">
-            <div class="hmk-letter-main" style="color: #d97706;">${item.num}</div>
-            <div class="hmk-letter-emoji">${item.emoji}</div>
-            <div class="hmk-letter-word">${item.word}</div>
-            <div class="hmk-letter-english">${item.en}</div>
-          </div>
-        `).join('');
-      }
+      const msg = category === 'swar' 
+        ? 'स्वर अ से अः तक सीखें! किसी भी कार्ड को दबाएं।'
+        : 'व्यंजन क से ज्ञ तक सीखें! बहुत बढ़िया!';
+      document.getElementById('chikuMessage').innerText = msg;
+      speak(msg);
 
+      renderFlashcards();
+    }
+
+    // MAIN TAB NAVIGATION
+    function switchMainTab(tabId, pillElement) {
+      document.querySelectorAll('.nav-pill').forEach(btn => btn.classList.remove('active'));
+      if (pillElement) pillElement.classList.add('active');
+
+      document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active-view'));
+      const activeView = document.getElementById(`tab-${tabId}`);
+      if (activeView) activeView.classList.add('active-view');
+
+      if (tabId === 'quiz') generateQuizQuestion();
+      if (tabId === 'matching') renderMatchingGame();
+    }
+
+    // POPULATE MATRAS, WORDS, STORIES
+    function initContentGrids() {
       // Matras
-      const matraGrid = document.getElementById('grid-matra');
-      if (matraGrid) {
-        matraGrid.innerHTML = matraList.map(m => `
-          <div style="background: #ffffff; border: 2px solid #e0e7ff; border-radius: 14px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); cursor: pointer;" onclick="hmkSpeak('${m.vowel} की मात्रा ${m.symbol}, जैसे ${m.example}')">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #cbd5e1; padding-bottom: 6px; margin-bottom: 8px;">
-              <span style="font-size: 24px; font-weight: 900; color: #4338ca;">${m.vowel} (${m.symbol})</span>
-              <span style="background: #f1f5f9; padding: 3px 8px; border-radius: 6px; font-weight: 800; font-size: 13px;">${m.formula}</span>
-            </div>
-            <div style="font-size: 28px; text-align: center;">${m.emoji}</div>
-            <div style="font-size: 16px; font-weight: 900; text-align: center; color: #1e293b; margin-top: 4px;">
-              ${m.example} <span style="font-size: 12px; color: #64748b; font-weight: 600;">(${m.en})</span>
-            </div>
-          </div>
-        `).join('');
-      }
+      const matrasGrid = document.getElementById('matrasGrid');
+      matrasGrid.innerHTML = '';
+      MATRAS_DATA.forEach(m => {
+        const div = document.createElement('div');
+        div.className = 'word-card';
+        div.onclick = () => speak(`${m.word}... ${m.example}`);
+        div.innerHTML = `
+          <div class="emoji" style="color: var(--accent-yellow); font-weight:800; font-size:36px;">${m.letter}</div>
+          <div class="hindi">${m.word}</div>
+          <div class="meaning">${m.example}</div>
+        `;
+        matrasGrid.appendChild(div);
+      });
+
+      // Words
+      const wordsGrid = document.getElementById('wordsGrid');
+      wordsGrid.innerHTML = '';
+      WORDS_DATA.forEach(w => {
+        const div = document.createElement('div');
+        div.className = 'word-card';
+        div.onclick = () => {
+          speak(`${w.hindi}... means ${w.meaning}`);
+          stars += 2;
+          updateStars();
+        };
+        div.innerHTML = `
+          <div class="emoji">${w.icon}</div>
+          <div class="hindi">${w.hindi}</div>
+          <div class="meaning">${w.roman} (${w.meaning})</div>
+        `;
+        wordsGrid.appendChild(div);
+      });
 
       // Stories
-      const storiesCont = document.getElementById('container-stories');
-      if (storiesCont) {
-        storiesCont.innerHTML = storiesData.map(story => `
-          <div class="hmk-story-card">
-            <div class="hmk-story-title">📖 ${story.title}</div>
-            ${story.sentences.map(s => `
-              <div class="hmk-story-sentence" onclick="hmkSpeak('${s.hi}')">
-                <div class="hmk-sentence-hi">🔊 ${s.hi}</div>
-                <div class="hmk-sentence-en">${s.en}</div>
-              </div>
-            `).join('')}
-            <div style="margin-top: 10px; font-weight: 900; color: #b45309; font-size: 14px;">
-              🌟 सीख: ${story.moral}
-            </div>
-          </div>
-        `).join('');
-      }
-
-      // Barakhadi Chips
-      const chipsCont = document.getElementById('barakhadi-consonant-chips');
-      if (chipsCont) {
-        chipsCont.innerHTML = barakhadiConsonants.map(c => `
-          <button class="hmk-chip ${c === hmkState.selectedConsonant ? 'active' : ''}" onclick="selectBarakhadiConsonant('${c}')">${c}</button>
-        `).join('');
-      }
-
-      renderBarakhadi(hmkState.selectedConsonant);
-      renderWords(2);
-    }
-
-    // BARAKHADI MATRIX
-    function selectBarakhadiConsonant(c) {
-      hmkState.selectedConsonant = c;
-      document.querySelectorAll('.hmk-chip').forEach(el => el.classList.remove('active'));
-      event.target.classList.add('active');
-      renderBarakhadi(c);
-      hmkSpeak(c + ' की बारहखड़ी');
-    }
-
-    function renderBarakhadi(consonant) {
-      const grid = document.getElementById('grid-barakhadi');
-      if (!grid) return;
-      grid.innerHTML = barakhadiVowels.map(item => {
-        let syllable = consonant;
-        if (item.s) syllable = consonant + item.s;
-        return `
-          <div class="hmk-barakhadi-card" onclick="hmkSpeak('${syllable}')">
-            <div style="font-size: 12px; color: #9a3412; font-weight: 800;">${item.v} (${item.s || 'अ'})</div>
-            <div style="font-size: 34px; font-weight: 900; color: #ea580c; margin: 4px 0;">${syllable}</div>
-            <div style="font-size: 11px; color: #64748b;">🔊 सुनो</div>
-          </div>
+      const storiesList = document.getElementById('storiesList');
+      storiesList.innerHTML = '';
+      STORIES_DATA.forEach(s => {
+        const div = document.createElement('div');
+        div.className = 'story-card';
+        div.innerHTML = `
+          <h4>${s.title}</h4>
+          <p>${s.text}</p>
+          <button class="listen-story-btn" onclick="speak('${s.text.replace(/'/g, "\\'")}')">
+            <span>🔊</span> कहानी सुनें (Listen)
+          </button>
         `;
-      }).join('');
-    }
-
-    // WORD BUILDER
-    function hmkFilterWords(length, btn) {
-      hmkState.currentWordLength = length;
-      document.querySelectorAll('.hmk-word-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderWords(length);
-    }
-
-    function renderWords(length) {
-      const grid = document.getElementById('grid-words');
-      if (!grid) return;
-      const filtered = wordsData.filter(w => w.len === length);
-      grid.innerHTML = filtered.map(w => `
-        <div class="hmk-word-card" onclick="hmkSpeak('${w.word}')">
-          <div style="font-size: 34px;">${w.emoji}</div>
-          <div>
-            <div style="font-size: 20px; font-weight: 900; color: #047857;">${w.word}</div>
-            <div style="font-size: 12px; color: #64748b; font-weight: 600;">${w.en}</div>
-            <div class="hmk-word-tiles">
-              ${w.tiles.map(t => `<span class="hmk-tile">${t}</span>`).join('')}
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // CANVAS TRACING
-    let canvas, ctx, isDrawing = false;
-
-    function initCanvas() {
-      canvas = document.getElementById('tracing-canvas');
-      if (!canvas) return;
-      ctx = canvas.getContext('2d');
-      ctx.lineWidth = 14;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.strokeStyle = hmkState.canvasColor;
-
-      canvas.addEventListener('mousedown', startDraw);
-      canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener('mouseup', stopDraw);
-      canvas.addEventListener('mouseleave', stopDraw);
-
-      canvas.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        const mouseEvent = new MouseEvent('mousedown', {
-          clientX: touch.clientX,
-          clientY: touch.clientY
-        });
-        canvas.dispatchEvent(mouseEvent);
+        storiesList.appendChild(div);
       });
+    }
 
-      canvas.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        const mouseEvent = new MouseEvent('mousemove', {
-          clientX: touch.clientX,
-          clientY: touch.clientY
-        });
-        canvas.dispatchEvent(mouseEvent);
+    // QUIZ LOGIC
+    let currentQuizAnswer = '';
+    function generateQuizQuestion() {
+      const optionsDiv = document.getElementById('quizOptions');
+      const feedbackDiv = document.getElementById('quizFeedback');
+      feedbackDiv.innerText = '';
+      optionsDiv.innerHTML = '';
+
+      const pool = [...SWAR_DATA.slice(0, 8), ...VYANJAN_DATA.slice(0, 12)];
+      const target = pool[Math.floor(Math.random() * pool.length)];
+      currentQuizAnswer = target.letter;
+
+      document.getElementById('quizQuestion').innerText = `चित्र पहचानकर सही अक्षर चुनें: ${target.icon} (${target.word})`;
+      speak(`चित्र पहचानें: ${target.word}... सही अक्षर कौन सा है?`);
+
+      // 4 choices
+      const choices = [target];
+      while (choices.length < 4) {
+        const randomItem = pool[Math.floor(Math.random() * pool.length)];
+        if (!choices.includes(randomItem)) choices.push(randomItem);
+      }
+      choices.sort(() => Math.random() - 0.5);
+
+      choices.forEach(c => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.innerHTML = `<span>${c.letter}</span>`;
+        btn.onclick = () => {
+          if (c.letter === currentQuizAnswer) {
+            btn.classList.add('correct');
+            feedbackDiv.style.color = '#10b981';
+            feedbackDiv.innerText = `🎉 बहुत बढ़िया! सही उत्तर है: ${c.letter} से ${target.word}`;
+            speak('शाबाश! बिल्कुल सही उत्तर!');
+            stars += 10;
+            updateStars();
+          } else {
+            btn.classList.add('wrong');
+            feedbackDiv.style.color = '#ef4444';
+            feedbackDiv.innerText = `❌ अरे नहीं! यह ${c.letter} है, दोबारा प्रयास करें।`;
+            speak('गलत उत्तर, दोबारा प्रयास करें');
+          }
+        };
+        optionsDiv.appendChild(btn);
       });
+    }
 
-      canvas.addEventListener('touchend', () => {
-        const mouseEvent = new MouseEvent('mouseup', {});
-        canvas.dispatchEvent(mouseEvent);
+    // MATCHING GAME LOGIC
+    function renderMatchingGame() {
+      const grid = document.getElementById('matchingGrid');
+      grid.innerHTML = '';
+      const sample = SWAR_DATA.slice(0, 6);
+      sample.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'word-card';
+        card.onclick = () => {
+          speak(`${item.letter} से ${item.word}!`);
+          stars += 3;
+          updateStars();
+        };
+        card.innerHTML = `
+          <div class="emoji">${item.icon}</div>
+          <div class="hindi">${item.letter}</div>
+          <div class="meaning">${item.word}</div>
+        `;
+        grid.appendChild(card);
       });
-
-      drawBackgroundLetter();
     }
 
-    function drawBackgroundLetter() {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = 'bold 150px "Noto Sans Devanagari"';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#f1f5f9';
-      ctx.fillText(hmkState.tracingLetter, canvas.width / 2, canvas.height / 2);
+    // PARENTS MODAL & PIN VERIFICATION
+    function openParentsModal() {
+      parentMathNum1 = Math.floor(Math.random() * 5) + 3;
+      parentMathNum2 = Math.floor(Math.random() * 5) + 2;
+      document.getElementById('mathChallenge').innerText = `सुरक्षा प्रश्न: ${parentMathNum1} + ${parentMathNum2} = ?`;
+      document.getElementById('pinAnswer').value = '';
+      document.getElementById('parentsModal').classList.add('show');
     }
 
-    function startDraw(e) {
-      isDrawing = true;
-      const rect = canvas.getBoundingClientRect();
-      ctx.beginPath();
-      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    function closeParentsModal() {
+      document.getElementById('parentsModal').classList.remove('show');
     }
 
-    function draw(e) {
-      if (!isDrawing) return;
-      const rect = canvas.getBoundingClientRect();
-      ctx.strokeStyle = hmkState.canvasColor;
-      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-      ctx.stroke();
-    }
-
-    function stopDraw() {
-      if (isDrawing) {
-        isDrawing = false;
-        playBeep(600, 'sine', 0.08);
-      }
-    }
-
-    function hmkSetColor(color) {
-      hmkState.canvasColor = color;
-      if (ctx) ctx.strokeStyle = color;
-    }
-
-    function hmkClearCanvas() {
-      drawBackgroundLetter();
-      playBeep(300, 'sine', 0.1);
-    }
-
-    function hmkNewTracingLetter() {
-      const all = [...swarData, ...vyanjanData];
-      const rand = all[Math.floor(Math.random() * all.length)];
-      hmkState.tracingLetter = rand.letter;
-      document.getElementById('tracing-hint').innerText = `अभ्यास करें: अक्षर '${rand.letter}' (${rand.word}) लिखें`;
-      hmkSpeak(`अक्षर ${rand.letter} लिखिए`);
-      drawBackgroundLetter();
-    }
-
-    // MATCHING GAME
-    let selectedMatchLetter = null;
-    let selectedMatchEmoji = null;
-    let matchPairs = [];
-
-    function hmkResetMatching() {
-      const all = [...swarData, ...vyanjanData];
-      const shuffled = [...all].sort(() => Math.random() - 0.5).slice(0, 4);
-      matchPairs = shuffled;
-      selectedMatchLetter = null;
-      selectedMatchEmoji = null;
-
-      const leftLetters = [...shuffled].sort(() => Math.random() - 0.5);
-      const rightEmojis = [...shuffled].sort(() => Math.random() - 0.5);
-
-      const colLetters = document.getElementById('match-col-letters');
-      const colEmojis = document.getElementById('match-col-emojis');
-
-      if (colLetters && colEmojis) {
-        colLetters.innerHTML = leftLetters.map(item => `
-          <div class="hmk-match-card" id="match-l-${item.letter}" onclick="selectMatchLeft('${item.letter}', this)">
-            ${item.letter}
-          </div>
-        `).join('');
-
-        colEmojis.innerHTML = rightEmojis.map(item => `
-          <div class="hmk-match-card" id="match-r-${item.letter}" onclick="selectMatchRight('${item.letter}', this)">
-            ${item.emoji} <span style="font-size: 13px; font-weight: 700;">${item.word}</span>
-          </div>
-        `).join('');
-      }
-    }
-
-    function selectMatchLeft(letter, el) {
-      document.querySelectorAll('#match-col-letters .hmk-match-card').forEach(c => c.classList.remove('selected'));
-      el.classList.add('selected');
-      selectedMatchLetter = letter;
-      hmkSpeak(letter);
-      checkMatchingPair();
-    }
-
-    function selectMatchRight(letter, el) {
-      document.querySelectorAll('#match-col-emojis .hmk-match-card').forEach(c => c.classList.remove('selected'));
-      el.classList.add('selected');
-      selectedMatchEmoji = letter;
-      checkMatchingPair();
-    }
-
-    function checkMatchingPair() {
-      if (!selectedMatchLetter || !selectedMatchEmoji) return;
-      if (selectedMatchLetter === selectedMatchEmoji) {
-        // Match!
-        document.getElementById('match-l-' + selectedMatchLetter).classList.add('matched');
-        document.getElementById('match-r-' + selectedMatchEmoji).classList.add('matched');
-        hmkAddStar(1);
-        hmkSpeak('वाह! सही मिलान!');
-        selectedMatchLetter = null;
-        selectedMatchEmoji = null;
+    function verifyParentPin() {
+      const val = parseInt(document.getElementById('pinAnswer').value, 10);
+      if (val === (parentMathNum1 + parentMathNum2)) {
+        closeParentsModal();
+        switchMainTab('parents', null);
+        speak('अभिभावक क्षेत्र में आपका स्वागत है');
       } else {
-        // Wrong
-        playBeep(200, 'sawtooth', 0.2);
-        setTimeout(() => {
-          document.querySelectorAll('.hmk-match-card').forEach(c => c.classList.remove('selected'));
-          selectedMatchLetter = null;
-          selectedMatchEmoji = null;
-        }, 500);
+        alert('गलत उत्तर! कृपया पुनः प्रयास करें।');
+        document.getElementById('pinAnswer').value = '';
       }
     }
 
-    // QUIZ
-    let quizTarget = null;
-    function hmkGenerateQuiz() {
-      const all = [...swarData, ...vyanjanData];
-      const correct = all[Math.floor(Math.random() * all.length)];
-      quizTarget = correct;
-
-      document.getElementById('quiz-emoji').innerText = correct.emoji;
-      document.getElementById('quiz-question').innerText = `यह चित्र किस अक्षर से संबंधित है? (${correct.word})`;
-      hmkSpeak(`चित्र पहचानिए: ${correct.word}`);
-
-      const options = [correct.letter];
-      while (options.length < 4) {
-        const r = all[Math.floor(Math.random() * all.length)].letter;
-        if (!options.includes(r)) options.push(r);
-      }
-      options.sort(() => Math.random() - 0.5);
-
-      const optsCont = document.getElementById('quiz-options');
-      if (optsCont) {
-        optsCont.innerHTML = options.map(opt => `
-          <button class="hmk-quiz-btn" onclick="checkQuizAnswer('${opt}', this)">${opt}</button>
-        `).join('');
+    function resetAllProgress() {
+      if (confirm('क्या आप सचमुच सारी प्रोग्रेस रीसेट करना चाहते हैं?')) {
+        learnedLetters.clear();
+        stars = 1000;
+        updateStars();
+        renderFlashcards();
+        alert('प्रोग्रेस रीसेट हो गई है!');
       }
     }
 
-    function checkQuizAnswer(selected, btn) {
-      if (!quizTarget) return;
-      if (selected === quizTarget.letter) {
-        btn.style.background = '#10b981';
-        btn.style.color = '#ffffff';
-        hmkAddStar(2);
-        hmkSpeak('शाबाश! बिल्कुल सही उत्तर!');
-        setTimeout(hmkGenerateQuiz, 1200);
-      } else {
-        btn.style.background = '#ef4444';
-        btn.style.color = '#ffffff';
-        playBeep(220, 'square', 0.2);
-        hmkSpeak('गलत उत्तर, पुनः प्रयास करें');
-      }
-    }
-
-    // EXPORT & PASSWORD PROTECTED ACTIONS
-    const HMK_SECURITY_PASS = '9136046360';
-
-    function hmkVerifyPass() {
-      const entered = prompt('कृपया सुरक्षा पासवर्ड दर्ज करें (Enter Security Password):');
-      if (entered === HMK_SECURITY_PASS) return true;
-      if (entered !== null) alert('❌ गलत पासवर्ड! कृपया सही पासवर्ड दर्ज करें।');
-      return false;
-    }
-
-    function hmkCopySourceCode(btn) {
-      if (!hmkVerifyPass()) return;
-      const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(html).then(() => {
-          const txt = document.getElementById('copy-btn-text');
-          if (txt) txt.innerText = '✅ Copied!';
-          setTimeout(() => { if (txt) txt.innerText = 'Copy HTML Code'; }, 3000);
-          alert('✅ सम्पूर्ण वेबसाइट कोड कॉपी हो गया!\n\nअब Blogger या किसी भी HTML फाइल में Paste कर दें।');
-        });
-      } else {
-        alert('कृपया ब्राउज़र में Right Click -> View Page Source (Ctrl+U) दबाकर सारा कोड कॉपी करें।');
-      }
-    }
-
-    function hmkDownloadSourceCode() {
-      if (!hmkVerifyPass()) return;
-      const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'HindiMitraKids_CompleteCourse.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 10000);
-    }
+    // THEME TOGGLE (Dark/Light)
+    const themeBtn = document.getElementById('themeToggle');
+    themeBtn.onclick = () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      themeBtn.innerText = isLight ? '☀️' : '🌙';
+    };
 
     // INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
-      renderGrids();
-      hmkResetMatching();
+      renderFlashcards();
+      initContentGrids();
+      updateStars();
     });
   </script>
 </body>
