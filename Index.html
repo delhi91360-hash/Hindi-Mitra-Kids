@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hindi Mitra Kids - बाल हिंदी पाठशाँला</title>
+  <!-- Google Fonts: Noto Sans Devanagari & Plus Jakarta Sans -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+  
+  <style>
+    /* ==========================================
+       MATERIAL DESIGN 3 STYLES & BLOGGER SCOPING
+       ========================================== */
+    :root {
+      --primary: #f59e0b;
+      --primary-dark: #d97706;
+      --secondary: #10b981;
+      --accent: #6366f1;
+      --rose: #f43f5e;
+      --bg-main: #fffbeb;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+      --font-hindi: 'Noto Sans Devanagari', system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body, .hmk-container {
+      font-family: var(--font-hindi);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .hmk-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 12px;
+      min-height: 100vh;
+    }
+
+    /* HEADER & APP BAR */
+    .hmk-header {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #78350f;
+      padding: 16px 20px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+
+    .hmk-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hmk-logo {
+      font-size: 38px;
+      line-height: 1;
+      background: #ffffff;
+      padding: 6px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .hmk-title h1 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #78350f;
+      letter-spacing: -0.5px;
+    }
+
+    .hmk-title p {
+      font-size: 13px;
+      font-weight: 700;
+      color: #92400e;
+    }
+
+    .hmk-stats {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 8px 16px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hmk-star-count {
+      font-weight: 900;
+      font-size: 16px;
+      color: #d97706;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* NAVIGATION TABS */
+    .hmk-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .hmk-tabs::-webkit-scrollbar { display: none; }
+
+    .hmk-tab-btn {
+      background: #ffffff;
+      border: 2px solid #fde68a;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-family: var(--font-hindi);
+      font-weight: 800;
+      font-size: 14px;
+      color: #451a03;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hmk-tab-btn:hover, .hmk-tab-btn.active {
+      background: var(--primary);
+      border-color: var(--primary-dark);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* VIEW SECTIONS */
+    .hmk-section {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .hmk-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CARDS & GRIDS */
+    .hmk-grid-letters {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .hmk-letter-card {
+      background: #ffffff;
+      border: 2px solid #fef3c7;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .hmk-letter-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hmk-letter-main {
+      font-size: 38px;
+      font-weight: 900;
+      color: #b45309;
+      line-height: 1.1;
+    }
+
+    .hmk-letter-emoji {
+      font-size: 32px;
+      margin: 6px 0;
+    }
+
+    .hmk-letter-word {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .hmk-letter-english {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* MATRA SECTION */
+    .hmk-matra-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .hmk-matra-card {
+      background: #ffffff;
+      border: 2px solid #e0e7ff;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hmk-matra-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    .hmk-matra-symbol {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .hmk-matra-formula {
+      font-size: 18px;
+      font-weight: 800;
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 8px;
+      color: #334155;
+    }
+
+    /* STORY READER */
+    .hmk-story-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 16px;
+    }
+
+    .hmk-story-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #047857;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hmk-story-sentence {
+      background: #ecfdf5;
+      border-left: 4px solid #10b981;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .hmk-sentence-hi {
+      font-size: 17px;
+      font-weight: 800;
+      color: #065f46;
+    }
+
+    .hmk-sentence-en {
+      font-size: 13px;
+      color: #047857;
+    }
+
+    /* QUIZ GAME */
+    .hmk-quiz-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hmk-quiz-question {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 16px 0;
+      color: #1e293b;
+    }
+
+    .hmk-quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .hmk-quiz-btn {
+      background: #f8fafc;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .hmk-quiz-btn:hover {
+      border-color: var(--primary);
+      background: #fef3c7;
+    }
+
+    /* BUTTONS */
+    .hmk-btn {
+      background: var(--secondary);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-family: var(--font-hindi);
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .hmk-btn:hover {
+      transform: scale(1.03);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hmk-btn-speak {
+      background: #3b82f6;
+    }
+
+    /* BLOGGER EMBED NOTICE */
+    .hmk-footer-note {
+      margin-top: 30px;
+      padding: 14px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      border: 1px dashed #cbd5e1;
+    }
+
+    @media (max-width: 600px) {
+      .hmk-header { flex-direction: column; align-items: flex-start; }
+      .hmk-quiz-options { grid-template-columns: 1fr; }
+      .hmk-letter-main { font-size: 32px; }
+    }
+  </style>
+<script src="/_aistudio-iframe.js?v=2c34bde1"></script></head>
+<body>
+
+  <div class="hmk-container">
+    <!-- BLOGGER TOP INFO & ACTION BAR -->
+    <div id="hmk-blogger-bar" style="background: linear-gradient(135deg, #ea580c, #d97706); color: #fff; padding: 12px 16px; border-radius: 16px; margin-bottom: 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 14px rgba(234, 88, 12, 0.25); border: 2px solid #fbd38d;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 24px;">📝</span>
+        <div>
+          <div style="font-size: 14px; font-weight: 900;">Google Blogger Ready Single HTML File</div>
+          <div style="font-size: 11px; opacity: 0.9; font-weight: 500;">Blogger पोस्ट या पेज के '&lt; &gt; HTML view' में पेस्ट करने के लिए पूरा कोड तैयार है</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button onclick="hmkCopySourceCode(this)" style="background: #ffffff; color: #9a3412; border: none; padding: 7px 16px; border-radius: 10px; font-weight: 900; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+          <span>📋</span> <span id="copy-btn-text">Copy All HTML Code</span>
+        </button>
+        <button onclick="hmkDownloadSourceCode()" style="background: rgba(0,0,0,0.25); color: #fff; border: 1px solid rgba(255,255,255,0.5); padding: 7px 14px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer;">
+          ⬇️ Save .html File
+        </button>
+      </div>
+    </div>
+
+    <!-- APP HEADER -->
+    <header class="hmk-header">
+      <div class="hmk-brand">
+        <div class="hmk-logo">🎨</div>
+        <div class="hmk-title">
+          <h1>हिन्दी मित्र किड्स</h1>
+          <p>बच्चों के लिए आसान व मज़ेदार हिंदी शिक्षण</p>
+        </div>
+      </div>
+      <div class="hmk-stats">
+        <div class="hmk-star-count">
+          <span>⭐</span>
+          <span id="hmk-stars">0</span>
+        </div>
+        <button class="hmk-btn hmk-btn-speak" onclick="hmkSpeak('हिन्दी मित्र किड्स में आपका स्वागत है!')">
+          🔊 सुनो
+        </button>
+      </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="hmk-tabs">
+      <button class="hmk-tab-btn active" onclick="hmkSwitchTab('swar')">🔤 स्वर (अ-अः)</button>
+      <button class="hmk-tab-btn" onclick="hmkSwitchTab('vyanjan')">🔤 व्यंजन (क-ज्ञ)</button>
+      <button class="hmk-tab-btn" onclick="hmkSwitchTab('matra')">✍️ मात्राएँ</button>
+      <button class="hmk-tab-btn" onclick="hmkSwitchTab('numbers')">🔢 गिनती (1-10)</button>
+      <button class="hmk-tab-btn" onclick="hmkSwitchTab('stories')">📚 कहानियाँ</button>
+      <button class="hmk-tab-btn" onclick="hmkSwitchTab('quiz')">🎯 क्विज़ खेल</button>
+    </nav>
+
+    <!-- TAB 1: SWAR -->
+    <section id="tab-swar" class="hmk-section active">
+      <h2 style="font-size: 18px; margin-bottom: 12px; color: #b45309;">अक्षर सीखें - स्वर (Vowels)</h2>
+      <div class="hmk-grid-letters" id="grid-swar"></div>
+    </section>
+
+    <!-- TAB 2: VYANJAN -->
+    <section id="tab-vyanjan" class="hmk-section">
+      <h2 style="font-size: 18px; margin-bottom: 12px; color: #047857;">अक्षर सीखें - व्यंजन (Consonants)</h2>
+      <div class="hmk-grid-letters" id="grid-vyanjan"></div>
+    </section>
+
+    <!-- TAB 3: MATRA -->
+    <section id="tab-matra" class="hmk-section">
+      <h2 style="font-size: 18px; margin-bottom: 12px; color: #4338ca;">मात्रा ज्ञान (Hindi Vowel Signs)</h2>
+      <div class="hmk-matra-grid" id="grid-matra"></div>
+    </section>
+
+    <!-- TAB 4: NUMBERS -->
+    <section id="tab-numbers" class="hmk-section">
+      <h2 style="font-size: 18px; margin-bottom: 12px; color: #d97706;">हिन्दी संख्याएँ (Hindi Numbers)</h2>
+      <div class="hmk-grid-letters" id="grid-numbers"></div>
+    </section>
+
+    <!-- TAB 5: STORIES -->
+    <section id="tab-stories" class="hmk-section">
+      <h2 style="font-size: 18px; margin-bottom: 12px; color: #065f46;">ज्ञानवर्धक बाल कहानियाँ (Moral Stories)</h2>
+      <div id="container-stories"></div>
+    </section>
+
+    <!-- TAB 6: QUIZ -->
+    <section id="tab-quiz" class="hmk-section">
+      <div class="hmk-quiz-card">
+        <span style="font-size: 40px;" id="quiz-emoji">❓</span>
+        <div class="hmk-quiz-question" id="quiz-question">प्रश्न लोड हो रहा है...</div>
+        <div class="hmk-quiz-options" id="quiz-options"></div>
+        <button class="hmk-btn" style="margin-top: 20px;" onclick="hmkGenerateQuiz()">अगला प्रश्न ➡️</button>
+      </div>
+    </section>
+
+    <!-- FOOTER NOTE FOR BLOGGER -->
+    <footer class="hmk-footer-note">
+      <p>❤️ <strong>Hindi Mitra Kids</strong> - Responsive & Compatible with Google Blogger | Crafted with HTML, CSS & Vanilla JavaScript</p>
+    </footer>
+  </div>
+
+  <script>
+    /* ==========================================
+       VANILLA JAVASCRIPT & AUDIO SPEECH SYSTEM
+       ========================================== */
+
+    // Local Storage State
+    let hmkState = {
+      stars: parseInt(localStorage.getItem('hmk_blogger_stars') || '0'),
+    };
+
+    document.getElementById('hmk-stars').innerText = hmkState.stars;
+
+    // TTS Voice Speech Synthesis Function
+    function hmkSpeak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'hi-IN';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function hmkAddStar(amount = 1) {
+      hmkState.stars += amount;
+      localStorage.setItem('hmk_blogger_stars', hmkState.stars);
+      document.getElementById('hmk-stars').innerText = hmkState.stars;
+    }
+
+    // Navigation Switcher
+    function hmkSwitchTab(tabId) {
+      document.querySelectorAll('.hmk-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.hmk-tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      const targetSec = document.getElementById('tab-' + tabId);
+      if (targetSec) targetSec.classList.add('active');
+
+      const activeBtn = Array.from(document.querySelectorAll('.hmk-tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if (tabId === 'quiz') hmkGenerateQuiz();
+    }
+
+    // DATA DEFINITIONS
+    const swarData = [
+      { letter: 'अ', word: 'अनार', en: 'Pomegranate', emoji: '🍎' },
+      { letter: 'आ', word: 'आम', en: 'Mango', emoji: '🥭' },
+      { letter: 'इ', word: 'इमली', en: 'Tamarind', emoji: '🟤' },
+      { letter: 'ई', word: 'ईख', en: 'Sugarcane', emoji: '🌾' },
+      { letter: 'उ', word: 'उल्लू', en: 'Owl', emoji: '🦉' },
+      { letter: 'ऊ', word: 'ऊन', en: 'Wool', emoji: '🧶' },
+      { letter: 'ऋ', word: 'ऋषि', en: 'Sage', emoji: '🧘' },
+      { letter: 'ए', word: 'एड़ी', en: 'Heel', emoji: '🦶' },
+      { letter: 'ऐ', word: 'ऐनक', en: 'Spectacles', emoji: '👓' },
+      { letter: 'ओ', word: 'ओखली', en: 'Mortar', emoji: '🥣' },
+      { letter: 'औ', word: 'औरत', en: 'Woman', emoji: '👩' },
+      { letter: 'अं', word: 'अंगूर', en: 'Grapes', emoji: '🍇' },
+      { letter: 'अः', word: 'खाली', en: 'Empty', emoji: '✨' }
+    ];
+
+    const vyanjanData = [
+      { letter: 'क', word: 'कबूतर', en: 'Pigeon', emoji: '🕊️' },
+      { letter: 'ख', word: 'खरगोश', en: 'Rabbit', emoji: '🐇' },
+      { letter: 'ग', word: 'गमला', en: 'Flower Pot', emoji: '🪴' },
+      { letter: 'घ', word: 'घर', en: 'House', emoji: '🏠' },
+      { letter: 'च', word: 'चम्मच', en: 'Spoon', emoji: '🥄' },
+      { letter: 'छ', word: 'छतरी', en: 'Umbrella', emoji: '☂️' },
+      { letter: 'ज', word: 'जहाज', en: 'Ship', emoji: '🚢' },
+      { letter: 'झ', word: 'झंडा', en: 'Flag', emoji: '🚩' },
+      { letter: 'ट', word: 'टमाटर', en: 'Tomato', emoji: '🍅' },
+      { letter: 'ठ', word: 'ठठेरा', en: 'Tinker', emoji: '🔨' },
+      { letter: 'ड', word: 'डमरू', en: 'Hand Drum', emoji: '🥁' },
+      { letter: 'ढ', word: 'ढोलक', en: 'Drum', emoji: '🪘' },
+      { letter: 'त', word: 'तरबूज', en: 'Watermelon', emoji: '🍉' },
+      { letter: 'थ', word: 'थर्मस', en: 'Thermos', emoji: '🍶' },
+      { letter: 'द', word: 'दवात', en: 'Inkpot', emoji: '✒️' },
+      { letter: 'ध', word: 'धनुष', en: 'Bow', emoji: '🏹' },
+      { letter: 'न', word: 'नल', en: 'Tap', emoji: '🚰' },
+      { letter: 'प', word: 'पतंग', en: 'Kite', emoji: '🪁' },
+      { letter: 'फ', word: 'फल', en: 'Fruits', emoji: '🍎' },
+      { letter: 'ब', word: 'बस', en: 'Bus', emoji: '🚌' },
+      { letter: 'भ', word: 'भालू', en: 'Bear', emoji: '🐻' },
+      { letter: 'म', word: 'मछली', en: 'Fish', emoji: '🐟' },
+      { letter: 'य', word: 'यज्ञ', en: 'Yajna', emoji: '🔥' },
+      { letter: 'र', word: 'रथ', en: 'Chariot', emoji: '🛺' },
+      { letter: 'ल', word: 'लट्टू', en: 'Spinning Top', emoji: '🪀' },
+      { letter: 'व', word: 'वक', en: 'Crane', emoji: '🦩' },
+      { letter: 'श', word: 'शलजम', en: 'Turnip', emoji: '🧅' },
+      { letter: 'ष', word: 'षट्कोण', en: 'Hexagon', emoji: '⬡' },
+      { letter: 'स', word: 'सपेरा', en: 'Snake Charmer', emoji: '🐍' },
+      { letter: 'ह', word: 'हाथी', en: 'Elephant', emoji: '🐘' }
+    ];
+
+    const matraData = [
+      { vowel: 'आ', symbol: '◌ा', formula: 'क + ◌ा = का', word: 'कान (Ear)', emoji: '👂' },
+      { vowel: 'इ', symbol: '◌ि', formula: 'क + ◌ि = कि', word: 'किताब (Book)', emoji: '📖' },
+      { vowel: 'ई', symbol: '◌ी', formula: 'क + ◌ी = की', word: 'कील (Nail)', emoji: '📌' },
+      { vowel: 'उ', symbol: '◌ु', formula: 'क + ◌ु = कु', word: 'कुत्ता (Dog)', emoji: '🐶' },
+      { vowel: 'ऊ', symbol: '◌ू', formula: 'क + ◌ू = कू', word: 'कूड़ा (Trash)', emoji: '🗑️' },
+      { vowel: 'ए', symbol: '◌े', formula: 'क + ◌े = के', word: 'केला (Banana)', emoji: '🍌' },
+      { vowel: 'ऐ', symbol: '◌ै', formula: 'क + ◌ै = कै', word: 'कैमरा (Camera)', emoji: '📷' },
+      { vowel: 'ओ', symbol: '◌ो', formula: 'क + ◌ो = को', word: 'कोयल (Cuckoo)', emoji: '🐦' },
+      { vowel: 'औ', symbol: '◌ौ', formula: 'क + ◌ौ = कौ', word: 'कौआ (Crow)', emoji: '🐦‍⬛' }
+    ];
+
+    const numbersData = [
+      { num: '१', word: 'एक', en: '1 (One)', emoji: '🍎' },
+      { num: '२', word: 'दो', en: '2 (Two)', emoji: '🎈🎈' },
+      { num: '३', word: 'तीन', en: '3 (Three)', emoji: '⭐⭐️⭐️' },
+      { num: '४', word: 'चार', en: '4 (Four)', emoji: '🍀🍀🍀🍀' },
+      { num: '५', word: 'पाँच', en: '5 (Five)', emoji: '✋' },
+      { num: '६', word: 'छह', en: '6 (Six)', emoji: '🎲' },
+      { num: '७', word: 'सात', en: '7 (Seven)', emoji: '🌈' },
+      { num: '८', word: 'आठ', en: '8 (Eight)', emoji: '🐙' },
+      { num: '९', word: 'नौ', en: '9 (Nine)', emoji: '🎳' },
+      { num: '१०', word: 'दस', en: '10 (Ten)', emoji: '👐' }
+    ];
+
+    const storiesData = [
+      {
+        title: 'प्यासा कौआ (The Thirsty Crow)',
+        sentences: [
+          { hi: 'एक बार एक कौआ बहुत प्यासा था।', en: 'Once a crow was very thirsty.' },
+          { hi: 'उसने बगीचे में एक घड़ा देखा।', en: 'He saw a pot in the garden.' },
+          { hi: 'घड़े में पानी बहुत कम था।', en: 'There was very little water in the pot.' },
+          { hi: 'कौए ने उसमें छोटे-छोटे कंकड़ डाले।', en: 'The crow dropped small pebbles into it.' },
+          { hi: 'पानी ऊपर आ गया और कौए ने पानी पी लिया।', en: 'Water came up and the crow drank it.' }
+        ],
+        moral: 'मेहनत और बुद्धिमानी से हर समस्या का 
