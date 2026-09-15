@@ -603,4 +603,166 @@
           { hi: 'कौए ने उसमें छोटे-छोटे कंकड़ डाले।', en: 'The crow dropped small pebbles into it.' },
           { hi: 'पानी ऊपर आ गया और कौए ने पानी पी लिया।', en: 'Water came up and the crow drank it.' }
         ],
-        moral: 'मेहनत और बुद्धिमानी से हर समस्या का 
+        moral: 'मेहनत और बुद्धिमानी से हर समस्या का समाधान मिलता है।'
+      }
+    ];
+
+    // RENDER FUNCTIONS
+    function hmkRenderGrid(containerId, items) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = items.map(item => `
+        <div class="hmk-letter-card" onclick="hmkSpeak('${item.letter || item.num} से ${item.word}')">
+          <div class="hmk-letter-main">${item.letter || item.num}</div>
+          <div class="hmk-letter-emoji">${item.emoji}</div>
+          <div class="hmk-letter-word">${item.word}</div>
+          <div class="hmk-letter-english">${item.en}</div>
+        </div>
+      `).join('');
+    }
+
+    function hmkRenderMatra() {
+      const container = document.getElementById('grid-matra');
+      if (!container) return;
+      container.innerHTML = matraData.map(m => `
+        <div class="hmk-matra-card" onclick="hmkSpeak('${m.vowel} की मात्रा ${m.symbol}, जैसे ${m.word}')">
+          <div class="hmk-matra-header">
+            <span class="hmk-matra-symbol">${m.vowel} (${m.symbol})</span>
+            <span class="hmk-matra-formula">${m.formula}</span>
+          </div>
+          <div style="font-size: 24px; text-align: center;">${m.emoji}</div>
+          <div style="font-size: 16px; font-weight: 800; text-align: center;">उदाहरण: ${m.word}</div>
+        </div>
+      `).join('');
+    }
+
+    function hmkRenderStories() {
+      const container = document.getElementById('container-stories');
+      if (!container) return;
+      container.innerHTML = storiesData.map(story => `
+        <div class="hmk-story-card">
+          <div class="hmk-story-title">📖 ${story.title}</div>
+          ${story.sentences.map(s => `
+            <div class="hmk-story-sentence" onclick="hmkSpeak('${s.hi}')">
+              <div class="hmk-sentence-hi">🔊 ${s.hi}</div>
+              <div class="hmk-sentence-en">${s.en}</div>
+            </div>
+          `).join('')}
+          <div style="margin-top: 12px; font-weight: 800; color: #b45309; font-size: 14px;">
+            🌟 सीख: ${story.moral}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // QUIZ GENERATOR
+    let currentCorrectItem = null;
+
+    function hmkGenerateQuiz() {
+      const allItems = [...swarData, ...vyanjanData];
+      const correct = allItems[Math.floor(Math.random() * allItems.length)];
+      currentCorrectItem = correct;
+
+      document.getElementById('quiz-emoji').innerText = correct.emoji;
+      document.getElementById('quiz-question').innerText = `यह चित्र किस अक्षर से संबंधित है? (${correct.word})`;
+      
+      hmkSpeak(`चित्र पहचानिए: ${correct.word}`);
+
+      // Options
+      const options = [correct.letter];
+      while (options.length < 4) {
+        const rand = allItems[Math.floor(Math.random() * allItems.length)].letter;
+        if (!options.includes(rand)) options.push(rand);
+      }
+      options.sort(() => Math.random() - 0.5);
+
+      const optionsContainer = document.getElementById('quiz-options');
+      optionsContainer.innerHTML = options.map(opt => `
+        <button class="hmk-quiz-btn" onclick="hmkCheckQuiz('${opt}', this)">${opt}</button>
+      `).join('');
+    }
+
+    function hmkCheckQuiz(selected, btn) {
+      if (!currentCorrectItem) return;
+      if (selected === currentCorrectItem.letter) {
+        btn.style.background = '#10b981';
+        btn.style.color = '#ffffff';
+        hmkAddStar(1);
+        hmkSpeak('शाबाश! सही उत्तर!');
+        setTimeout(hmkGenerateQuiz, 1200);
+      } else {
+        btn.style.background = '#ef4444';
+        btn.style.color = '#ffffff';
+        hmkSpeak('गलत उत्तर, फिर से प्रयास करें');
+      }
+    }
+
+    // BLOGGER EXPORT HELPERS WITH PASSWORD PROTECTION
+    var HMK_SECURITY_PASS = '9136046360';
+
+    function hmkVerifySecurityPass() {
+      var entered = prompt('कृपया सुरक्षा पासवर्ड दर्ज करें (Enter Security Password):');
+      if (entered === HMK_SECURITY_PASS) {
+        return true;
+      }
+      if (entered !== null) {
+        alert('❌ गलत पासवर्ड! कृपया सही पासवर्ड दर्ज करें।');
+      }
+      return false;
+    }
+
+    function hmkCopySourceCode(btn) {
+      if (!hmkVerifySecurityPass()) return;
+      const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(html).then(() => {
+          const txt = document.getElementById('copy-btn-text');
+          if (txt) txt.innerText = '✅ Copied!';
+          setTimeout(() => { if (txt) txt.innerText = 'Copy All HTML Code'; }, 3000);
+          alert('✅ सारा HTML कोड कॉपी हो गया!\n\nअब Blogger.com पर जाएं -> New Post/Page -> "< > HTML view" चुनें -> और Paste (Ctrl+V) कर दें।');
+        }).catch(err => {
+          console.error(err);
+          alert('कृपया ब्राउज़र में Right Click -> View Page Source (या Ctrl+U) दबाकर सारा कोड कॉपी कर लें।');
+        });
+      } else {
+        alert('कृपया ब्राउज़र में Right Click -> View Page Source (या Ctrl+U) दबाकर सारा कोड कॉपी कर लें।');
+      }
+    }
+
+    function hmkDownloadSourceCode() {
+      if (!hmkVerifySecurityPass()) return;
+      const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'HindiMitraKids_Blogger.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    }
+
+    // INITIALIZATION FUNCTION
+    function initHMK() {
+      try {
+        hmkRenderGrid('grid-swar', swarData);
+        hmkRenderGrid('grid-vyanjan', vyanjanData);
+        hmkRenderGrid('grid-numbers', numbersData);
+        hmkRenderMatra();
+        hmkRenderStories();
+      } catch (err) {
+        console.error('Error initializing HMK:', err);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHMK);
+      window.addEventListener('load', initHMK);
+    } else {
+      initHMK();
+    }
+  </script>
+
+</body>
+</html>
